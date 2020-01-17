@@ -1,0 +1,46 @@
+<app-header-breadcrumb></app-header-breadcrumb>
+<p-panel header="Candidate List">
+<div class="p-col-12">
+    
+                          
+                            <span class="ui-inputgroup-addon " style="width: 140px;">
+                              <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 80px; " >
+                              <option value="" selected data-default >Search by</option>
+                              <option value="Username">Username</option>
+                              <option value="Name">Name</option>
+                            </select></span>
+                            <input id="float-input-username" type="text" size="30" pInputText formControlName="phone"
+                              required>
+                              <div class="ui-inputgroup-addon" style="width: 140px;">
+                                <button pButton type="button" label="Search" class="ui-button-rounded ui-button-primary"></button>
+                              </div>
+                          </div>
+                        
+
+    <p-table [value]="user" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td *ngFor="let col of columns">
+                    <div *ngIf="col.field != 'Department'">{{user[col.field]}}</div>
+                    <div *ngIf="col.field == 'Department'"><a (click)="goToDepartmentDetails(user.DepartmentId)">{{user[col.field]}}</a></div>
+                </td>
+                <td>
+                </td>
+                <td>
+                   <button pButton type="button" label="Detail" class="ui-button-rounded" style="width: 60px; font-size: 10px;"></button>&nbsp;
+                  <button pButton type="button" label="Delete" class="ui-button-rounded ui-button-warning "style="width: 60px; font-size: 10px"></button>&nbsp;
+                  <button pButton type="button" label="NonAktif" class="ui-button-rounded ui-button-danger"style="width: 60px; font-size: 10px"></button></td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>

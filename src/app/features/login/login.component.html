@@ -1,0 +1,63 @@
+<!-- <app-header></app-header> -->
+<div class="login-panel">
+    <div class="ng-header">
+        <div class="ng-header-left left">
+            <div class="logo right">
+                <img src="assets/images/lwcn-logo.png" class="logo-large">
+                <img src="assets/images/lwcn-logo-min.png" class="logo-small">
+            </div>
+          </div>
+        </div>
+
+
+  <div class="p-grid p-justify-center p-align-center" style="height:100%">
+    <div class="p-xl-3 p-lg-6 p-md-8 p-sm-10">
+      <p-panel class="p-col-12 text-center"  header="Linov Psikotest Login">
+
+        <div class="p-grid p-justify-center p-align-center">
+          <div class="p-xl-6 p-lg-6 p-md-8 p-sm-10">
+            <img src="assets/images/lwcn-logo.png" class="login-logo">
+          </div>
+          <div class="p-col-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+              <input id="input-username" type="text" size="30" pInputText [(ngModel)]="userName"
+                placeholder="Enter Email">
+            </div>
+          </div>
+          <div class="p-col-12">
+            <div class="ui-inputgroup">
+              <span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
+              <input id="input-password" type="password" size="30" pInputText [(ngModel)]="password"
+                placeholder="Enter Password">
+            </div>
+          </div>
+
+        </div>
+
+          <div class="p-col-12 text-center">
+            <button pButton type="button" label="{{ 'Login' | translate}}" class="ui-button-raised "
+              (click)="onClickLogin()"></button>
+          </div>
+          <div class="p-col-12 text-center">
+              <a>_______________________________________</a>
+            </div>
+          <div class="p-col-12 text-center">
+              <a>Dont Have an account?</a>
+            </div>
+          <div class="p-col-12">
+            <button pButton type="button" label="Create an account" class="ui-button-raised"
+              [routerLink]="['/register']"></button>
+          </div>
+
+      </p-panel>
+
+    </div>
+  </div>
+  <div class="ng-footer">
+      <div>Copyrights © 2009-2017 Lawencon International - All Rights Reserved.
+  </div>
+</div>
+
+
+

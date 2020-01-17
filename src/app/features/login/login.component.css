@@ -1,0 +1,9 @@
+.language-menu {
+    position: absolute;
+    right: 0px;
+    padding: 10px;
+}
+.center-div.ui-panel{
+  width: 30%;
+  margin: 0 auto;
+}

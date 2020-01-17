@@ -1,0 +1,14 @@
+
+.Name {display: inline-block; width:49%;}
+.Name .cf-medium {width:130%;}
+.Name label {display: block !important; width: 150% !important;}
+
+select:required:invalid {
+  color: gray;
+}
+option[value=""][disabled] {
+  display: none;
+}
+option {
+  color: black;
+}

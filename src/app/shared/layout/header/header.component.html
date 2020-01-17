@@ -1,0 +1,28 @@
+<div class="ng-header">
+    <div class="ng-header-left left">
+        <div class="toggle-menu-button left">
+            <a class="icon" (click)="toggleMenu()"><i class="fa fa-bars"></i></a>
+        </div>
+        <div class="logo right">
+            <img src="assets/images/lwcn-logo.png" class="logo-large">
+            <img src="assets/images/lwcn-logo-min.png" class="logo-small">
+        </div>
+    </div>
+    <div class="dropdown ng-header-right right">
+      <button class="dropbtn"><a><span [innerHtml]="user.emailId" class="user-name"></span><i class="fa fa-user"></i></a></button>
+      <div class="dropdown-content">
+        <a class="fa fa-user" (click)="showDialog()"><font size="3" color="black" style = "font-family:calibri" >&nbsp;Profil</font></a>
+        <a class="fa fa-sign-out-alt" (click)="logout()"><font size="3" color="black" style = "font-family:calibri" >&nbsp;Logout</font></a>
+
+
+      </div>
+    </div>
+</div>
+
+<p-dialog header="Admin Profil " [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
+ [baseZIndex]="10000">
+    <div><b>User Name: </b><i [innerHtml]="user.userName"></i></div>
+    <div><b>Email Id: </b><i [innerHtml]="user.emailId"></i></div>
+    <div><b>Birthdate: </b><i [innerHtml]="user.birthDate | date:'dd/MM/yyyy'"></i></div>
+</p-dialog>
+

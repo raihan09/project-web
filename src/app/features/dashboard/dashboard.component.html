@@ -1,0 +1,56 @@
+
+<p-messages [(value)]="msgs"></p-messages>
+<app-header-breadcrumb></app-header-breadcrumb>
+<div class="ui-g dashboard-card">
+
+    <div class="ui-g-6 ui-md-3">
+        <p-card styleClass="overview-box-1">
+          <div class="ui-g">
+              <div class="ui-g-4" style="text-align: center;">Total Candidates<h1 style="text-align: center;">75%</h1>
+                </div>
+              <div class="fas fa-users ; ui-g-8" style='font-size:70px; text-align: center;'></div>
+          </div>
+        </p-card>
+      </div>
+
+
+  <div class="ui-g-6 ui-md-3">
+    <p-card styleClass="overview-box-2">
+      <div class="ui-g">
+          <div class="ui-g-4" style="text-align: center;">Approved Candidates<h1 style="text-align: center;">75%</h1>
+            </div>
+          <div class="fas fa-user-check ; ui-g-8" style='font-size:70px; text-align: center;'></div>
+      </div>
+    </p-card>
+  </div>  <div class="ui-g-6 ui-md-3">
+      <p-card styleClass="overview-box-3">
+        <div class="ui-g">
+            <div class="ui-g-4" style="text-align: center;">Rejected Candidates<h1 style="text-align: center;">75%</h1>
+              </div>
+            <div class="fas fa-user-alt-slash ; ui-g-8" style='font-size:70px; text-align: center;'></div>
+        </div>
+      </p-card>
+    </div>
+    <div class="ui-g-6 ui-md-3">
+        <p-card styleClass="overview-box-4">
+          <div class="ui-g">
+              <div class="ui-g-4" style="text-align: center;">Total Questions<h1 style="text-align: center;">75%</h1>
+                </div>
+              <div class="fas fa-file-alt ; ui-g-8" style='font-size:70px; text-align: center;'></div>
+          </div>
+        </p-card>
+      </div>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-12 ui-md-6">
+    <p-card>
+      <p-chart type="doughnut" [data]="doughnutChartData" [height]="200" [width]="200"></p-chart>
+    </p-card>
+  </div>
+  <div class="ui-g-12 ui-md-6">
+    <p-card>
+      <p-chart type="bar" [data]="barChartData" [height]="200" [width]="200"></p-chart>
+    </p-card>
+  </div>
+</div>
