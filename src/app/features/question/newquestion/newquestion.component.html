@@ -1,0 +1,101 @@
+<app-header-breadcrumb></app-header-breadcrumb>
+<p-panel header="New Question" >
+    &nbsp;
+    <div class="p-grid">
+<div class="p-col-6" style="padding-left: 50px;padding-right: 50px;">
+        <span class="ui-float-label">
+    <textarea id="float-input" rows="2" cols="30" pInputTextarea class="p-col-6" ></textarea>
+    <label for="float-input" style="font-size: 16px; color: black;">Question Title</label>
+</span>
+
+</div>
+<div class="p-col-4">
+        <span class="ui-float-label">
+                <textarea id="float-input" rows="2" cols="30" pInputTextarea class="p-col-6" ></textarea>
+                <label for="float-input" style="font-size: 16px; color: black;">Question Description</label>
+            </span>
+</div>
+<div class="p-col-2">
+<p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Insert image"></p-fileUpload>
+</div>
+ <div class="p-col-6" style="padding-left: 50px;padding-right: 50px;">
+<h5 class="first " style ="font-size: 16px"><span class='notbold'>Question Type</span></h5>
+<div class="ui-g-12 ui-md-6 ui-lg-4">
+<button pButton type="button" label="Essay" class="ui-button-raised" onclick="myFunction()" style="height: 50px;"></button>
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-4">
+<button pButton type="button" label="Multiple Choice" class="ui-button-raised" onclick="myFunction2() "style="height: 50px;"></button>
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-4">
+ <button pButton type="button" label="Scala" class="ui-button-raised" onclick="myFunction3()"style="height: 50px;"></button>
+</div>
+</div>
+  
+
+
+<div id="myDIV"  class="p-col-6"  style="padding-left: 50px;padding-right: 50px;display: none;">
+    <h4 class="first">Answer</h4>
+    <textarea rows="4" cols="30" pInputTextarea></textarea>
+</div>
+
+<div id="myDIV2"  class="p-col-6"  style="padding-left: 50px;padding-right: 50px;display: none;">
+        <h4 class="first">Options :</h4>
+        <div class= "ui-g-12 ui-md-6 ui-lg-8">
+        <textarea rows="1" cols="30" pInputTextarea placeholder="Options A." ></textarea>
+            </div>
+            <div class= "ui-g-12 ui-md-6 ui-lg-4" >
+        <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Insert image"></p-fileUpload>
+    </div>
+    <div class= "ui-g-12 ui-md-6 ui-lg-8">
+            <textarea rows="1" cols="30" pInputTextarea placeholder="Options B." ></textarea>
+                </div>
+                <div class= "ui-g-12 ui-md-6 ui-lg-4" >
+            <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Insert image"></p-fileUpload>
+        </div>
+        <div class= "ui-g-12 ui-md-6 ui-lg-8">
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Options C." ></textarea>
+                    </div>
+                    <div class= "ui-g-12 ui-md-6 ui-lg-4" >
+                <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Insert image"></p-fileUpload>
+            </div>
+            <div class= "ui-g-12 ui-md-6 ui-lg-8">
+                    <textarea rows="1" cols="30" pInputTextarea placeholder="Options D." ></textarea>
+                        </div>
+                        <div class= "ui-g-12 ui-md-6 ui-lg-4" >
+                    <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Insert image"></p-fileUpload>
+                </div>
+                <div class= "ui-g-12 ui-md-6 ui-lg-8">
+                        <textarea rows="1" cols="30" pInputTextarea placeholder="Options E." ></textarea>
+                            </div>
+                            <div class= "ui-g-12 ui-md-6 ui-lg-4" >
+                        <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Insert image"></p-fileUpload>
+                    </div>
+        <h4 class="first">Answer :</h4>
+        <div class= "ui-g-12 ui-md-6 ui-lg-8">
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Right Answer" ></textarea>
+                    </div>
+                    <div class= "ui-g-12 ui-md-6 ui-lg-4" >
+                <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Insert image"></p-fileUpload>
+            </div>
+    
+</div>
+<div id="myDIV3"  class="p-col-6"  style="padding-left: 50px;padding-right: 50px;display: none;">
+            <h4 class="first">Options :</h4>
+            <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 1" class="fa fa-circle-o"></textarea>
+            <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 2" class="fa fa-circle-o"></textarea>
+            <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 3" class="fa fa-circle-o"></textarea>
+            <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 4" class="fa fa-circle-o"></textarea>
+            <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 5" class="fa fa-circle-o"></textarea>
+       
+    </div>
+
+<div class="p-col-12" style="padding-top: 100px;">
+<div class="ui-g-12 ui-md-6 " style="padding-left: 500px;">
+<button pButton type="button" class="ui-button-success" style="height: 40px;"><i class="pi pi-plus" style="padding-top: 8px;"></i>&nbsp;Add</button>
+</div>
+<div class="ui-g-12 ui-md-6 "style="padding-right: 500px;">
+<button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
+</div>
+</div>
+</div>
+</p-panel>

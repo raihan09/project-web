@@ -37,9 +37,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.userName = "";
     this.password = "";
-    this.locale = this.sessionService.getItem("ng-prime-language");
-    this.version = environment.version;
-    this.msgs = [{ severity: 'info', detail: 'UserName: admin' }, { severity: 'info', detail: 'Password: password' }];
+
+    // this.msgs = "[{ severity: 'info', detail: 'UserName: admin' }, { severity: 'info', detail: 'Password: password' }]";
   }
 
   onClickLogin() {
@@ -49,18 +48,9 @@ export class LoginComponent implements OnInit {
       this.routeStateService.add("Home", '/main/home', null, true);
       return;
     }
-    this.toastService.addSingle('error', '', 'Invalid user.');
+    this.toastService.addSingle("tc",'error', '', 'Invalid user.');
     return;
   }
 
-  onLanguageChange($event) {
-    this.locale = $event.target.value;
-    if (this.locale == undefined || this.locale == null || this.locale.length == 0) {
-      this.locale = "en";
-    }
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
-    this.translate.use(this.locale);
-    this.sessionService.setItem("ng-prime-language", this.locale);
-  }
-
+ 
 }

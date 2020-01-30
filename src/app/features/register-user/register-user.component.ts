@@ -70,10 +70,13 @@ export class RegisterUserComponent implements OnInit {
       this.userform.controls["name"].value,
       this.userform.controls["password"].value,
       this.userform.controls["emailId"].value,
-      this.userform.controls["birthDate"].value);
+      this.userform.controls["birthDate"].value,
+      this.userform.controls["gender"].value,
+      this.userform.controls["phone"].value,
+      this.userform.controls["fullname"].value);
     if (isRegistered) {
       this.router.navigate(['/login']);
-      this.toastService.addSingle("success", "", "User registered.")
+      this.toastService.addSingle("ta","success", "", "User registered.")
     }
   }
 

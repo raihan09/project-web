@@ -1,4 +1,5 @@
 
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
 <div class="user-regisration">
   <div class="ng-header">
     <div class="ng-header-left left">
@@ -67,7 +68,7 @@
                       </p-message>
                     </div>
                     <div class="p-col-12">
-                      <p-calendar formControlName="birthDate" placeholder="Birth date" [showIcon]=true></p-calendar>
+                      <p-calendar formControlName="birthDate" placeholder="Birth date" [showIcon]=true [monthNavigator]="true" [yearNavigator]="true" yearRange="1800:2030"></p-calendar >
                     </div>
                     <div class="p-col-12" *ngIf="userform.controls['birthDate'].errors && userform.controls['birthDate'].dirty">
                       <p-message severity="error" text="Birthdate is required"
@@ -89,7 +90,7 @@
                         <div class="p-col-12">
                           <div class="ui-inputgroup">
                             <span class="ui-inputgroup-addon"><i class="fa fa-venus-mars"></i></span>
-                            <select class="custom-select" id="inputGroupSelect01" pInputText  required placeholder="Phone">
+                            <select class="custom-select" id="inputGroupSelect01" pInputText  required placeholder="Phone" formControlName="gender">
                               <option value="" selected data-default>Gender</option>
                               <option value="Male">Male</option>
                               <option value="Female">Female</option>

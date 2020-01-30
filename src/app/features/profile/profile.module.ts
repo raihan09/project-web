@@ -2,18 +2,23 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppCommonModule } from 'src/app/app.common.module';
 import { HeaderBreadCrumbModule } from 'src/app/shared/layout/header-breadcrumb/header-breadcrumb.module';
-import { EmployeesRoutingModule } from 'src/app/features/user/user.routing';
-import { UserComponent } from 'src/app/features/user/user.component';
+import { ProfileRoutingModule } from 'src/app/features/profile/profile.routing';
+import { ProfileComponent } from './profile.component';
+
+interface City{
+  name:string;
+  code:string;
+}
 
 @NgModule({
   imports: [
     CommonModule,
-    EmployeesRoutingModule,
+    ProfileRoutingModule,
     AppCommonModule,
     HeaderBreadCrumbModule
   ],
   declarations: [
-    UserComponent
+    ProfileComponent  
   ]
 })
-export class EmployeesModule { }
+export class ProfileModule { }

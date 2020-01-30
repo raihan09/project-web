@@ -1,0 +1,84 @@
+<app-header-breadcrumb></app-header-breadcrumb>
+<p-panel header="Candidate List">
+<div class="p-col-12">
+                     <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
+                            <span class="ui-inputgroup-addon " style="width: 140px;">
+                              <!-- <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 90px; " >
+                              <option value="" selected data-default >Search by</option>
+                              <option value="Username">Username</option>
+                              <option value="Name">Name</option>
+                            </select> -->
+                        <p-dropdown [options]="cities1" [(ngModel)]="selectedCity1" ></p-dropdown>
+                        </span>
+                            <input id="float-input-username" type="text" size="30" pInputText [(ngModel)]="name"
+                              required style="width: 40px;" >
+                              <div class="ui-inputgroup-addon" style="width: 80px;">
+                                <button pButton type="button" class="ui-button-rounded ui-button-primary" (click)= "findProfile()" style="height: 30px; width: 60px"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
+                              </div>
+                          </div>
+                        </div>
+    
+    <p-table [value]="profiles" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-profiles let-profileid>
+            <tr>
+                <td *ngFor="let col of columns">
+                    <div>{{profiles[col.field][col.field2]}}</div>
+                </td>
+                <td>
+                </td>
+                <td style="text-align: center;">
+                   <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog(profiles.userId)"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Detail</button>&nbsp;&nbsp;
+
+                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog(profiles.userId)"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;
+
+            </tr>
+
+        </ng-template>
+    </p-table>
+</p-panel>
+
+<p-dialog  [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '400px'}" [minY]="10"
+[baseZIndex]="10000">
+<p-header class="pi pi-user" style>
+    Candidate Profile
+</p-header>
+
+       <div class="row mb-6 ui-g-12">
+           <div class="col-sm-6 ui-g-6">Name</div>
+           <div class="col-sm-6 ui-g-6">:&nbsp;{{profileid?.profile?.profileName}}</div>
+
+       </div>
+       <hr/>
+       <div class="row mb-6 ui-g-12">
+        <div class="col-sm-6 ui-g-6">Gender</div>
+        <div class="col-sm-6 ui-g-6">:&nbsp;{{profileid?.profile?.gender}}</div>
+
+    </div>     <hr/> <div class="row mb-6 ui-g-12">
+        <div class="col-sm-6 ui-g-6">Date of Birth</div>
+        <div class="col-sm-6 ui-g-6">:&nbsp;{{profileid?.profile?.dob | date:'dd/MM/yyyy'}} </div>
+
+    </div>    <hr/>  <div class="row mb-6 ui-g-12">
+        <div class="col-sm-6 ui-g-6">Address</div>
+        <div class="col-sm-6 ui-g-6">:&nbsp;{{profileid?.profile?.address}}</div>
+
+    </div>    <hr/>  <div class="row mb-6 ui-g-12">
+        <div class="col-sm-6 ui-g-6">Phone</div>
+        <div class="col-sm-6 ui-g-6">:&nbsp;{{profileid?.profile?.phone}}</div>
+
+    </div>    <hr/>  <div class="row mb-6 ui-g-12">
+        <div class="col-sm-6 ui-g-6">Email</div>
+        <div class="col-sm-6 ui-g-6">:&nbsp;{{profileid?.profile?.email}}</div>
+
+    </div>
+       <hr/>
+
+</p-dialog>

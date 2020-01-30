@@ -20,6 +20,7 @@ import {PanelMenuModule} from 'primeng/panelmenu';
 import {DialogModule} from 'primeng/dialog';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {DropdownModule} from 'primeng/dropdown';
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
     exports: [
@@ -43,7 +44,8 @@ import {DropdownModule} from 'primeng/dropdown';
         PanelMenuModule,
         DialogModule,
         RadioButtonModule,
-        DropdownModule
+        DropdownModule,
+        FileUploadModule
     ]
 })
 export class NgPrimeModule { }

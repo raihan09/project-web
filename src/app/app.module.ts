@@ -1,3 +1,4 @@
+
 // angular default
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+  
     BrowserAnimationsModule,
     AppRoutingModule,
     UserIdleModule.forRoot({ idle: 300, timeout: 1, ping: null }),

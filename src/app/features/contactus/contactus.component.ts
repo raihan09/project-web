@@ -33,7 +33,7 @@ export class ContactusComponent implements OnInit {
 
     ref.onClose.subscribe((success: boolean) => {
       if (success) {
-        this.toastService.addSingle("success", "Mail send successfully", "");
+        this.toastService.addSingle("tc","success", "Mail send successfully", "");
       }
     });
   }

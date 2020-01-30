@@ -1,3 +1,4 @@
+import { ApplicantAnswerModule } from './features/applicant-answer/applicant-answer.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -23,22 +24,27 @@ const appRoutes: Routes = [
             canActivate: [AuthGuard]
         },
         {
-            path: 'departments',
-            loadChildren: () => import('src/app/features/department/department.module').then(m => m.DepartmentModule),
+            path: 'question',
+            loadChildren: () => import('src/app/features/question/question.module').then(m => m.QuestionModule),
             canActivate: [AuthGuard]
         },
         {
             path: 'candidates',
-            loadChildren: () => import('src/app/features/user/user.module').then(m => m.EmployeesModule),
+            loadChildren: () => import('src/app/features/profile/profile.module').then(m => m.ProfileModule),
             canActivate: [AuthGuard]
         },
         {
-            path: 'aboutus',
-            loadChildren: () => import('src/app/features/aboutus/aboutus.module').then(m => m.AboutUsModule),
+            path: 'assignquestion',
+            loadChildren: () => import('src/app/features/assignquestion/assignquestion.module').then(m => m.AssignquestionModule),
             canActivate: [AuthGuard]
         },
         {
-            path: 'contactus',
+            path: 'testresult',
+            loadChildren: () => import('src/app/features/applicant-answer/applicant-answer.module').then(m => m.ApplicantAnswerModule),
+            canActivate: [AuthGuard]
+        },
+        {
+            path: 'contactus',  
             loadChildren: () => import('src/app/features/contactus/contactus.module').then(m => m.ContactUsModule),
             canActivate: [AuthGuard]
         }]

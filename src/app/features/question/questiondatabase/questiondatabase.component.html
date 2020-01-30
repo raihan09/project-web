@@ -1,0 +1,50 @@
+<app-header-breadcrumb></app-header-breadcrumb>
+<p-panel header="Question Database">
+<div class="p-col-12">
+        <div><button pButton type="button"class="ui-button-raised  ui-button-success " style="width: 150px; height: 30px; float:right; font-size: px;" (click)="goTonewquestion()" >
+                <font class="fa fa-plus-circle" style="font-style: Arial; padding-top: 5px;">&nbsp;&nbsp;Add New</font>
+                </button></div>
+        <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
+                <span class="ui-inputgroup-addon " style="width: 140px;">
+                  <!-- <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 90px; " >
+                  <option value="" selected data-default >Search by</option>
+                  <option value="Username">Username</option>
+                  <option value="Name">Name</option>
+                </select> -->
+            <p-dropdown [options]="cities1" [(ngModel)]="selectedCity1"></p-dropdown>
+            </span>
+                <input id="float-input-username" type="text" size="30" pInputText
+                  required style="width: 40px;" >
+                  <div class="ui-inputgroup-addon" style="width: 80px;">
+                    <button pButton type="button" class="ui-button-rounded ui-button-primary" style="height: 30px; width: 60px"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
+                  </div>
+              </div>
+            </div>
+
+    <p-table [value]="quest" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-quest>
+            <tr>
+                <td *ngFor="let col of columns">
+                    <div *ngIf="col.field2 == ''">{{quest[col.field]}}</div>
+                    <div>{{quest[col.field][col.field2]}}</div>
+                </td>   
+                <td>
+                </td>
+                <td style="text-align: center;">
+                  <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="goToPacktDetails(quest.packageId)"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Detail</button>&nbsp;&nbsp;
+
+                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="goToPacktDetails()"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;</td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</p-panel>

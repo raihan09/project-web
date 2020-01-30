@@ -1,11 +1,12 @@
 export class Profile {
-  profile_id:string;
-  profile_name:string;
-  gender:string;
-  dob:string;
-  address:string;
-  phone:string;
-  email :string;
-  AS:string;
-
+  constructor(
+  profile_id: string='aaa',
+  profileName: string = 'aaa',
+  gender: string,
+  dob: string,
+  address: string,
+  phone: string,
+  email : string,
+  activeState: string
+  ){}
 }

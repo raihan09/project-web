@@ -39,7 +39,7 @@ export class MenuComponent implements OnInit {
 
         var activeMenu = this.sessionService.getItem("active-menu");
         if (activeMenu) {
-            this.selectedItem = activeMenu;
+            this.selectedItem = "Home";
         } else {
             this.selectedItem = "Home";
         }

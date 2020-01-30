@@ -22,7 +22,10 @@
 <p-dialog header="Admin Profil " [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70"
  [baseZIndex]="10000">
     <div><b>User Name: </b><i [innerHtml]="user.userName"></i></div>
+    <div><b>Fullname: </b><i [innerHtml]="user.fullname"></i> </div>
     <div><b>Email Id: </b><i [innerHtml]="user.emailId"></i></div>
     <div><b>Birthdate: </b><i [innerHtml]="user.birthDate | date:'dd/MM/yyyy'"></i></div>
+    <div><b>Gender: </b><i [innerHtml]="user.gender"></i> </div>
+    <div><b>Phone: </b><i [innerHtml]="user.phone"></i> </div>
 </p-dialog>
 

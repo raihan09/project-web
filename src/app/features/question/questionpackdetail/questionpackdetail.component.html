@@ -1,0 +1,176 @@
+<app-header-breadcrumb></app-header-breadcrumb>
+<p-panel>
+        <p-header><strong>{{pack.packageName}}</strong></p-header>
+<div class="p-col-12">
+        <div><button pButton type="button"class="ui-button-raised  ui-button-success " style="width: 150px; height: 30px; float:right; font-size: px;" (click)="showDialog1()" >
+            <font class="fa fa-plus-circle" style="font-style: Arial; padding-top: 5px;">&nbsp;&nbsp;Add Question</font>
+            </button></div>
+            <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
+                    <span class="ui-inputgroup-addon " style="width: 140px;">
+                      <!-- <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 90px; " >
+                      <option value="" selected data-default >Search by</option>
+                      <option value="Username">Username</option>
+                      <option value="Name">Name</option>
+                    </select> -->
+                <p-dropdown [options]="cities1" [(ngModel)]="selectedCity1"></p-dropdown>
+                </span>
+                    <input id="float-input-username" type="text" size="30" pInputText
+                      required style="width: 40px;" >
+                      <div class="ui-inputgroup-addon" style="width: 80px;">
+                        <button pButton type="button" class="ui-button-rounded ui-button-primary" style="height: 30px; width: 60px"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
+                      </div>
+                  </div>
+                </div>
+   
+    <p-table [value]="questpack2" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-questpack2>
+            <tr>
+                <td *ngFor="let col of columns" >
+                    <div *ngIf="col.field3 == ''">{{questpack2[col.field][col.field2]}}</div>
+                    <div >{{questpack2[col.field][col.field2][col.field3]}}</div>
+
+                </td>
+               
+                <td>
+                </td>
+                <td style="text-align:center">
+                  <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog(questpack2.question.questionId)"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Detail</button>&nbsp;&nbsp;
+
+                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="showConfirm2(questpack2.packageQuestionId)"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;
+            </tr>
+        </ng-template>
+    </p-table>
+
+</p-panel> &nbsp; 
+<!-- <div><button pButton type="button"class="ui-button-raised  ui-button-secondary " style="width: 80px; height: 30px; float:right; padding-top: 2px;" (click)="back()" >
+    <i class="fas fa-arrow-alt-circle-left" style="font-style: Arial; padding-top: 5px;">&nbsp;&nbsp;Back</i>
+    </button></div> -->
+
+<p-dialog header="Question Database" [(visible)]="display2" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
+ [resizable]="false">
+
+ <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
+        <span class="ui-inputgroup-addon " style="width: 140px;">
+          <!-- <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 90px; " >
+          <option value="" selected data-default >Search by</option>
+          <option value="Username">Username</option>    
+          <option value="Name">Name</option>
+        </select> -->
+    <p-dropdown [options]="cities1" [(ngModel)]="selectedCity1"></p-dropdown>
+    </span>
+        <input id="float-input-username" type="text" size="30" pInputText
+          required style="width: 40px;" >
+          <div class="ui-inputgroup-addon" style="width: 80px;">
+            <button pButton type="button" class="ui-button-rounded ui-button-primary" style="height: 30px; width: 60px"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
+          </div>
+      </div>
+    
+    
+        <p-table [value]="quest" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-quest>
+                <tr>
+                    <td *ngFor="let col of columns2">
+                        <div *ngIf="col.field2 == ''">{{quest[col.field]}}</div>
+                        <div>{{quest[col.field][col.field2]}}</div>
+                    </td>   
+                    <td>
+                    </td>
+                    <td style="text-align: center;">
+                      <a  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showConfirm(quest.questionId)"><i class="pi pi-plus" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Add</a>&nbsp;&nbsp;
+    
+    
+                </tr>
+            </ng-template>
+        </p-table>
+    
+        <p-toast position="top-center" key="c"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
+                <ng-template let-message pTemplate="message">
+                    <div style="text-align: center">
+                        <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+                        <h3>{{message.summary}}</h3>
+                        <p>{{message.detail}}</p>
+                    </div>
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-6">
+                                <a type="button" pButton (click)="onConfirm()"  label="Yes" class="ui-button-success"></a>
+                        </div>
+                        <div class="ui-g-6">
+                            <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-toast>
+            <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+
+           
+</p-dialog>
+<p-toast position="top-center" key="cc"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
+        <ng-template let-message pTemplate="message">
+            <div style="text-align: center">
+                <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+                <h3>{{message.summary}}</h3>
+                <p>{{message.detail}}</p>
+            </div>
+            <div class="ui-g ui-fluid">
+                <div class="ui-g-6">
+                        <a [href]= 'reload' type="button" pButton (click)="DeleteQuestion(questpack2.packageQuestionId)" label="Yes" class="ui-button-success"></a>
+                </div>
+                <div class="ui-g-6">
+                    <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
+                </div>
+            </div>
+        </ng-template>
+       
+    </p-toast>
+ <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tt"></p-toast>
+
+    
+<p-dialog  [(visible)]="display" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
+[resizable]="false">
+<p-header class="pi pi-user" style>
+    Question Details
+</p-header>
+
+       <div class="row mb-6 ui-g-12">
+           <div class="col-sm-6 ui-g-6">Quessiton Name</div>
+           <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.questionTitle}}</div>
+
+       </div>
+       <hr/>
+       <div class="row mb-6 ui-g-12">
+        <div class="col-sm-6 ui-g-6">Question Description</div>
+        <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.questionDesc}}</div>
+
+    </div>     <hr/> <div class="row mb-6 ui-g-12">
+        <div class="col-sm-6 ui-g-6">Choice</div>
+        <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.choice?.choiceA}} </div>
+        <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.choice?.choiceB}} </div>
+        <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.choice?.choiceC}} </div>
+        <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.choice?.choiceD}} </div>
+        <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.choice?.choiceE}} </div>
+    </div>    <hr/>  <div class="row mb-6 ui-g-12">
+        <div class="col-sm-6 ui-g-6">Right Answer</div>
+        <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.correctAnswer?.answer1}}</div>
+        <div class="col-sm-6 ui-g-offset-6">:&nbsp;{{question?.correctnswer?.answer1}}</div>
+    </div>
+       <hr/>
+
+</p-dialog>
