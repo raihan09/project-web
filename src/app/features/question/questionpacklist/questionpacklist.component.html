@@ -1,6 +1,8 @@
 <app-header-breadcrumb></app-header-breadcrumb>
 <p-panel header="Question Pack List">
-    
+    <div><button pButton type="button"class="ui-button-raised  ui-button-success " style="width: 150px; height: 30px; float:right; font-size: px;" (click)="showDialogAdd()" >
+        <font class="fa fa-plus-circle" style="font-style: Arial; padding-top: 5px;">&nbsp;&nbsp;Add New</font>
+        </button></div>
 <div class="p-col-12">
         <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
                 <span class="ui-inputgroup-addon " style="width: 140px;">
@@ -38,11 +40,127 @@
                 <td>
                 </td>
                 <td style="text-align: center;">
-                  <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="goToPacktDetails(questpack.packageId)"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Detail</button>&nbsp;&nbsp;
-
-                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="goToPacktDetails()"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;</td>
+                  <button  pButton type="button"  class="ui-button-rounded" style="width: 60px; height: 30px;font-size: 11px;padding-top: 3px;" (click)="goToPacktDetails(questpack.packageId)"><i class="fab fa-wpforms" style="font-size: 11px;text-align: center;padding-top: 6px;"></i>&nbsp;Detail</button>&nbsp;&nbsp;
+                  <button  pButton type="button"  class="ui-button-rounded ui-button-success" style="width: 60px; height: 30px;font-size: 11px;padding-top: 3px" (click)="showDialogUpdate(questpack.packageId)"><i class="far fa-edit" style="font-size: 11px;text-align: center;padding-top: 6px;"></i>&nbsp;Update</button>&nbsp;&nbsp;
+                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 60px; height: 30px;font-size: 11px;padding-top: 3px" (click)="showConfirmDelete(questpack.packageId)"><i class="fas fa-trash-alt" style="font-size: 11px;text-align: center;padding-top: 6px;"></i>&nbsp;Delete</button>&nbsp;&nbsp;</td>
 
             </tr>
         </ng-template>
     </p-table>
 </p-panel>
+<p-dialog header="New Question Package " [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '300px'}" [minY]="70"
+ [baseZIndex]="10000">
+ 
+        <div class="row mb-6 ui-g-12">
+            <div class="col-sm-6 ui-g-6" ><strong>Question Package Title : </strong></div>
+            <div class="col-sm-6 ui-g-6">
+            <textarea [rows]="1" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="package.packageName"></textarea>
+            </div>
+            
+        </div>
+        <hr/>
+        
+        <div class="row mb-6 ui-g-12">
+            <div class="col-sm-3 ui-g-6"><strong>Time : </strong></div>
+            <div class="col-sm-6 ui-g-6">
+            <textarea [rows]="1" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="package.amountOfTime"></textarea>
+        </div>
+        </div>
+        <hr/>
+        <div class="p-col-12" style="padding-top: 10px;">
+            <div class="ui-g-12 ui-md-6 " >
+            <button pButton type="button" class="ui-button-success" style="height: 40px;" (click)="showConfirmAdd()"><i class="pi pi-plus" style="padding-top: 8px;" ></i>&nbsp;Add</button>
+            </div>
+            <div class="ui-g-12 ui-md-6 ">
+            <button  pButton type="button" class="ui-button-danger" style="height: 40px;" (click)="display=false"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
+            </div>
+            </div>
+            <p-toast position="top-center" key="c"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
+                    <ng-template let-message pTemplate="message">
+                        <div style="text-align: center">
+                            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+                            <h3>{{message.summary}}</h3>
+                            <p>{{message.detail}}</p>
+                        </div>
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-6">
+                                    <a type="button" pButton (click)="onConfirmAdd()"  label="Yes" class="ui-button-success"></a>
+                            </div>
+                            <div class="ui-g-6">
+                                <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tct" (onClose)="reload()" ></p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+               
+</p-dialog>
+
+<p-dialog header="Update Question Package " [(visible)]="displayU" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '300px'}" [minY]="70"
+ [baseZIndex]="10000">
+ 
+        <div class="row mb-6 ui-g-12">
+            <div class="col-sm-6 ui-g-6" ><strong>Question Package Title : </strong></div>
+            <div class="col-sm-6 ui-g-6">
+            <textarea [rows]="1" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="packupdate.packageName"></textarea>
+            </div>
+            
+        </div>
+        <hr/>
+        
+        <div class="row mb-6 ui-g-12">
+            <div class="col-sm-3 ui-g-6"><strong>Time : </strong></div>
+            <div class="col-sm-6 ui-g-6">
+            <textarea [rows]="1" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="packupdate.amountOfTime"></textarea>
+        </div>
+        </div>
+        <hr/>
+        <div class="p-col-12" style="padding-top: 10px;">
+            <div class="ui-g-12 ui-md-6 " >
+            <button pButton type="button" class="ui-button-success" style="height: 40px;" (click)="showConfirmUpdate()"><i class="pi pi-plus" style="padding-top: 8px;" ></i>&nbsp;Update</button>
+            </div>
+            <div class="ui-g-12 ui-md-6 ">
+            <button  pButton type="button" class="ui-button-danger" style="height: 40px;" (click)="displayU=false"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
+            </div>
+            </div>
+            <p-toast position="top-center" key="cu"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
+                    <ng-template let-message pTemplate="message">
+                        <div style="text-align: center">
+                            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+                            <h3>{{message.summary}}</h3>
+                            <p>{{message.detail}}</p>
+                        </div>
+                        <div class="ui-g ui-fluid">
+                            <div class="ui-g-6">
+                                    <a type="button" pButton (click)="onConfirmUpdate()"  label="Yes" class="ui-button-success"></a>
+                            </div>
+                            <div class="ui-g-6">
+                                <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tcu" (onClose)="reload()" ></p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tu"></p-toast>
+               
+</p-dialog>
+<p-toast position="top-center" key="cc"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                    <a type="button" pButton (click)="onConfirmDelete()"  label="Yes" class="ui-button-success"></a>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tcct" (onClose)="reload()" ></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tcc"></p-toast>

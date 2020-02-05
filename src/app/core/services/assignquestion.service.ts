@@ -28,6 +28,9 @@ export class AssignquestionService {
     return this.httpClient.delete(this.apiURL + '/assign-question/'+id);
   }
   public updateAssignQuestion(AssignQuestion,id){
-    return this.httpClient.put(this.apiURL + '/assign-question'+id,AssignQuestion);
+    return this.httpClient.put(this.apiURL + '/assign-question/'+id,AssignQuestion);
+  }
+  public getAssignQuestionbyUser(userId){
+    return this.httpClient.get(this.apiURL + '/assign-question/user/'+userId+'/package');
   }
 }

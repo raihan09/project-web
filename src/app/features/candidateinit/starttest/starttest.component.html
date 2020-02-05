@@ -1,0 +1,249 @@
+
+<div class="ng-header">
+  <div class="ng-header-left left">
+    <div class="logo right">
+      <img src="assets/images/lwcn-logo.png" class="logo-large" />
+      <img src="assets/images/lwcn-logo-min.png" class="logo-small" />
+    </div>
+  </div>
+
+ <div class="dropdown ng-header-right right">
+    <button class="dropbtn">
+      <a
+        ><span [innerHtml]="user.emailId" class="user-name"></span
+        ><i class="fa fa-user"></i
+      ></a>
+    </button>
+
+    <div class="dropdown-content">
+      <a class="fa fa-user" (click)="showDialog()"
+        ><font size="3" color="black" style="font-family:calibri"
+          >&nbsp;Profil</font
+        ></a
+      >
+      <a class="fa fa-sign-out-alt" (click)="logout()"
+        ><font size="3" color="black" style="font-family:calibri"
+          >&nbsp;Logout</font
+        ></a
+      >
+    </div>
+  </div>
+</div>
+
+<div
+  class="p-grid p-xl-10 "
+  style="height:87% ;width:100%;"
+>
+  <div class="p-col-4 p-offset-4" style="height: 50px; margin-top: 10px;">
+    <!-- <p style="font-size: 25px;"></p> -->
+    <div style="text-align: center; font-size: 25px;">
+        {{hours}} : {{minutes}} : {{seconds}}
+    </div>
+  </div>
+    
+  <div
+    class="content-wrapper p-col-10 p-offset-1"
+    style="margin-top: -100px;"
+  >
+    <section class="content p-col-12" >
+      <div class="row">
+        <div class="col-md-12" >
+          <div *ngFor="let pack of qpack; let i = index">
+            <div [hidden]="i !== indeks">
+              <p-panel>
+                <p-header>{{ "Soal Nomor " + (i + 1) }} </p-header>
+                <!-- <div class="col-md-4"> -->
+
+                <div class="ui-g-12">
+                  <div class="ui-g-1" *ngFor="let item of qpack; let i = index">
+                    <button
+                      pButton
+                     
+                      (click)="numberQuestion(i)" 
+                      style="height: 30px; padding-top: 5px;"
+                    >
+                      {{ i + 1 }}
+                    </button>
+                  </div>
+                </div>
+
+                <!-- </div> -->
+                <!-- /.box-body -->
+                <br>
+                <strong> Question:</strong>
+                <br><br>
+                <p-card>
+                  <p>{{ pack.question.questionDesc }}</p>
+                </p-card>
+                <br>
+                <strong> Answer:</strong>
+                <br> <br>
+                <div *ngIf="pack?.question?.questionType?.questionTypeTitle === 'Pilihan Ganda Teks'; else templateName5">
+                <p-card>
+                    <div class="form-group">
+                  <div class="ui-g">
+                    <div class="ui-g-6">
+                            <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceA}}"[(ngModel)]="aplicantAnswer.appAnswer.answer1">{{pack.question.choice.choiceA}}<br>
+                    </div>
+                    <div class="ui-g-6">
+                      
+                            <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceB}}" [(ngModel)]="aplicantAnswer.appAnswer.answer1">{{pack.question.choice.choiceB}}<br>
+                      
+                    </div>
+                    <div class="ui-g-6">
+                   
+                            <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceC}}"[(ngModel)]="aplicantAnswer.appAnswer.answer1">{{pack.question.choice.choiceC}}<br>
+                    </div>
+                    <div class="ui-g-6">
+                      
+                            <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceD}}"[(ngModel)]="aplicantAnswer.appAnswer.answer1">{{pack.question.choice.choiceD}}<br>
+                      
+                    </div>
+                    <div class="ui-g-6">
+                      
+                            <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceE}}"[(ngModel)]="aplicantAnswer.appAnswer.answer1">{{pack.question.choice.choiceE}}<br>
+                      
+                    </div>
+                    
+                
+                    <!-- </div>  -->
+                  </div>
+                </div>
+            </p-card>
+          </div> 
+                 <ng-template #templateName5>
+                                        <div *ngIf="pack?.question?.questionType?.questionTypeTitle === 'Pilihan Ganda Gambar'; else templateName6">
+                                            <p-card>
+                                                <div class="form-group">
+                                              <div class="ui-g">
+                                                <div class="ui-g-6">
+                                                        <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceA}}"[(ngModel)]="aplicantAnswer.appAnswer.answer1"><img src="{{pack.question.choice.choiceA}}" alt="Image 1" style="height: 100px;width: 100px;"><br>
+                                                </div>
+                                                <div class="ui-g-6">
+                                                  
+                                                        <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceB}}" [(ngModel)]="aplicantAnswer.appAnswer.answer1"><img src="{{pack.question.choice.choiceB}}" alt="Image 2"style="height: 100px;width: 100px;"><br>
+                                                  
+                                                </div>
+                                                <div class="ui-g-6">
+                                               
+                                                        <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceC}}"[(ngModel)]="aplicantAnswer.appAnswer.answer1"><img src="{{pack.question.choice.choiceC}}" alt="Image 1"style="height: 100px;width: 100px;"><br>
+                                                </div>
+                                                <div class="ui-g-6">
+                                                  
+                                                        <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceD}}"[(ngModel)]="aplicantAnswer.appAnswer.answer1"><img src="{{pack.question.choice.choiceD}}" alt="Image 3"style="height: 100px;width: 100px;"><br>
+                                                  
+                                                </div>
+                                                <div class="ui-g-6">
+                                                  
+                                                        <input type="radio" name="gender{{i}}" value="{{pack.question.choice.choiceE}}"[(ngModel)]="aplicantAnswer.appAnswer.answer1"><img src="{{pack.question.choice.choiceE}}" alt="Image 4"style="height: 100px;width: 100px;"><br>
+                                                  
+                                                </div>
+                                             
+                                              </div>
+                                            </div>
+                                        </p-card>
+                                        </div>
+                                    </ng-template>
+                                    <ng-template #templateName6>
+                                        <div class="ui-g">
+                                            <textarea></textarea>
+                                        </div>
+                                    </ng-template>
+                                  
+
+                
+
+                <p-footer>
+                    <div class="ui-g">
+                  <div class="ui-g-1 p-offset-5">
+                    <div [hidden]="i == 0">
+                      <button
+                        type="button"
+                        pButton type="button" 
+                        (click)="prevQuest(i)"
+                        style="padding-top: 4px; height: 30px;">
+                        <i class="fa fa-backward"></i> Prev
+                      </button>
+                    </div>
+                  
+                  </div>
+                  <div class="ui-g-1">
+                      <div *ngIf="i + 1 == qpack.length; else templateName4" >
+                        <button
+                          type="button"
+                          pButton type="button"
+                       
+                          (click)="confirm1()"
+                          style="padding-top: 4px; height: 30px;"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                    <div class="ui-g-1 ">
+                      <ng-template #templateName4>
+                           
+                        <button
+                          type="button"
+                          pButton type="button"
+            
+                          (click)="nextQuest(i)"
+                          style="padding-top: 4px; height: 30px;"
+                        >Next
+                          <i class="fa fa-forward"></i> 
+                        </button>
+                
+                      </ng-template>
+                    </div>
+                </div>
+            </p-footer>
+             
+              </p-panel>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.box -->
+    </section>
+  </div>
+</div>
+<div class="ng-footer">
+  <div>
+    Copyrights © 2009-2017 Lawencon International - All Rights Reserved.
+  </div>
+</div>
+
+<p-dialog
+  header="Candidate Profil "
+  [(visible)]="display"
+  [modal]="true"
+  [responsive]="true"
+  [style]="{ width: '350px', minWidth: '200px' }"
+  [minY]="70"
+  [baseZIndex]="10000"
+>
+  <div><b>User Name: </b><i [innerHtml]="user.userName"></i></div>
+  <div><b>Fullname: </b><i [innerHtml]="user.fullname"></i></div>
+  <div><b>Email Id: </b><i [innerHtml]="user.emailId"></i></div>
+  <div>
+    <b>Birthdate: </b><i [innerHtml]="user.birthDate | date: 'dd/MM/yyyy'"></i>
+  </div>
+  <div><b>Gender: </b><i [innerHtml]="user.gender"></i></div>
+  <div><b>Phone: </b><i [innerHtml]="user.phone"></i></div>
+</p-dialog>
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+
+<p-dialog header="Linov Psikotest" [(visible)]="display1" [modal]="true" [style]="{width: '50vw'}"[baseZIndex]="10000"
+    [draggable]="false" [resizable]="false"(onHide)="reload()" >
+    <div style="padding: 20px;text-align: center;"> 
+      <p>Anda sudah mengerjakan semua paket soal. Jawaban anda sudah kami rekam. Terimakasih sudah mengerjakan soal psikotest online. Pengumuman hasil test akan segera diinfokan melalui email anda.</p>
+
+    </div>     
+    <p-footer>
+      <div class="p-col-2 p-offset-5">
+        <button type="button" pButton icon="pi pi-check" (click)="reload()" label="OK"></button>
+      </div>
+    </p-footer>
+    
+</p-dialog>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tt" (onClose)="reload1()" ></p-toast>

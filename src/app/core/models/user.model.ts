@@ -11,7 +11,7 @@ export class User {
 
     }
 
-    userId: number;
+    userId: any;
     userName: string;
     password: string;
     emailId: string;

@@ -29,4 +29,5 @@ export class PackageQuestionService {
   public deletePackageQuestion(id){
     return this.httpClient.delete(this.apiURL +'/question-pack/'+id);
   }
+  
 }

@@ -39,12 +39,11 @@ export class MenuComponent implements OnInit {
 
         var activeMenu = this.sessionService.getItem("active-menu");
         if (activeMenu) {
-            this.selectedItem = "Home";
+            this.selectedItem = activeMenu;
         } else {
             this.selectedItem = "Home";
         }
     }
-
     ngOnDestroy() {
         this.menuDataService.toggleMenuBar.observers.forEach(function (element) { element.complete(); });
     }

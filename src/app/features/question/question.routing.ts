@@ -3,7 +3,7 @@ import { QuestiondatabaseComponent } from './questiondatabase/questiondatabase.c
 import { NewquestionComponent } from './newquestion/newquestion.component';
 import { QuestionpackdetailComponent } from './questionpackdetail/questionpackdetail.component';
 import { QuestionpacklistComponent } from './questionpacklist/questionpacklist.component';
-import { Profile } from 'src/app/core/models/profile';
+import { Profile } from 'src/app/core/models/profile.model';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

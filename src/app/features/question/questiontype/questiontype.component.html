@@ -18,6 +18,8 @@
         </ng-template>
         
         </p-toast>
+        <p-toast [style]="{marginTop: '80px'}" position="top-center" key="td"></p-toast>
+        <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tdt" (onClose)="reload()" ></p-toast>
 <p-panel header="Question Type">
         <div class="p-col-12">
                 <div><button pButton type="button"class="ui-button-raised  ui-button-success " style="width: 150px; height: 30px; float:right; font-size: px;" (click)="showDialog()" >
@@ -68,32 +70,6 @@
     </p-table>
 </p-panel>
 
-   
-<p-toast position="top-center" key="c"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
-        <ng-template let-message pTemplate="message">
-            <div style="text-align: center">
-                <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
-                <h3>{{message.summary}}</h3>
-                <p>{{message.detail}}</p>
-            </div>
-            <div class="ui-g ui-fluid">
-                <div class="ui-g-6">
-                        <a type="button" pButton (click)="onConfirm()"  label="Yes" class="ui-button-success"></a>
-                </div>
-                <div class="ui-g-6">
-                    <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
-                </div>
-            </div>
-        </ng-template>
-    </p-toast>
-    <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
-
-   
-
-
-<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tt"></p-toast>
-
-
 <p-dialog header="New Question Type " [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '300px'}" [minY]="70"
  [baseZIndex]="10000">
  
@@ -130,7 +106,7 @@
                         </div>
                         <div class="ui-g ui-fluid">
                             <div class="ui-g-6">
-                                    <a type="button" pButton (click)="onConfirm()"  label="Yes" class="ui-button-success"></a>
+                                    <a type="button" pButton (click)="onConfirm()" label="Yes" class="ui-button-success"></a>
                             </div>
                             <div class="ui-g-6">
                                 <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
@@ -138,8 +114,8 @@
                         </div>
                     </ng-template>
                 </p-toast>
-                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
-    
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="ta"></p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tat" (onClose)="reload()" ></p-toast>
                
 </p-dialog>
 
@@ -167,29 +143,9 @@
             <button pButton type="button" class="ui-button-success" style="height: 40px;" (click)="showConfirm3()"><i class="pi pi-plus" style="padding-top: 8px;" ></i>&nbsp;Add</button>
             </div>
             <div class="ui-g-12 ui-md-6 ">
-            <button  pButton type="button" class="ui-button-danger" style="height: 40px;" (click)="display=false"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
+            <button  pButton type="button" class="ui-button-danger" style="height: 40px;" (click)="display2=false"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
             </div>
             </div>
-            <p-toast position="top-center" key="c"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
-                    <ng-template let-message pTemplate="message">
-                        <div style="text-align: center">
-                            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
-                            <h3>{{message.summary}}</h3>
-                            <p>{{message.detail}}</p>
-                        </div>
-                        <div class="ui-g ui-fluid">
-                            <div class="ui-g-6">
-                                    <a type="button" pButton (click)="onConfirm()"  label="Yes" class="ui-button-success"></a>
-                            </div>
-                            <div class="ui-g-6">
-                                <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
-                            </div>
-                        </div>
-                    </ng-template>
-                </p-toast>
-                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
-                
-
                 <p-toast position="top-center" key="ccc"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
                     <ng-template let-message pTemplate="message">
                         <div style="text-align: center">
@@ -199,7 +155,7 @@
                         </div>
                         <div class="ui-g ui-fluid">
                             <div class="ui-g-6">
-                                    <a type="button" pButton (click)="onConfirm2()"  label="Yes" class="ui-button-success"></a>
+                                    <a type="button" pButton (click)="onConfirm2()" label="Yes" class="ui-button-success"></a>
                             </div>
                             <div class="ui-g-6">
                                 <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
@@ -207,7 +163,8 @@
                         </div>
                     </ng-template>
                 </p-toast>
-                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tu"></p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tut" (onClose)="reload()" ></p-toast>
     
                
 </p-dialog>

@@ -13,7 +13,7 @@ import { ToastService } from 'src/app/core/services/toast.service';
   styleUrls: ['./questiontype.component.css']
 })
 export class QuestiontypeComponent implements OnInit {
-baru:any;
+baru:any="";
 baruadd:any;
   columns: any[];
 type:any;
@@ -36,18 +36,12 @@ qtype : QuestionType = new QuestionType(null,null,null,'active')
   ngOnInit() {
     let resp = this.questiontypeservice.getAllQuestionType();
     resp.subscribe((data) => this.type = data);
-    resp.subscribe((data) => this.baru = data);
+  
     this.pageSize = 10;
 
     this.columns = [
-      { field: 'questionTypeTitle', header: 'Question Type Title' },
-      { field: 'answerType', header: 'Answer Type' }
+      { field: 'questionTypeTitle', header: 'Question Type Title' } 
     ];
-    this.cities1 = [
-      {label:'Find By', value:null},
-      {label:'Name', value:{id:1, name: 'New York', code: 'NY'}},
-      {label:'Email', value:{id:2, name: 'Rome', code: 'RM'}}
-  ];
 
     // this.profile = this.profileService.getProfileList();
   }
@@ -65,11 +59,10 @@ qtype : QuestionType = new QuestionType(null,null,null,'active')
 DeleteQuestionType(){
   this.messageService.clear('cc');
     let resp = this.questiontypeservice.deleteQuestionType(this.idqp);
-    resp.subscribe((data) => this.type = data);
-    console.log(this.idqp)
-    
+    resp.subscribe((data) => { this.toastService.addSingle("tdt",'success','','Question Deleted');},
+    (error)=>{  this.toastService.addSingle("td",'error','',error.error);});
    // this.router.navigateByUrl('/main/question/questionpackdetail/'+this.id);
-   this.toastService.addSingle("tt",'success','','Question Deleted');
+  
 }
 showConfirm() {
 
@@ -96,18 +89,18 @@ onConfirm() {
   this.messageService.clear('c');
 console.log(this.qtype)
   const resp = this.questiontypeservice.addQuestionType(this.qtype);
-  resp.subscribe((data) => this.baruadd = data);
+  resp.subscribe((data) => { this.toastService.addSingle("tat",'success','','Question Type Added');},
+  (error)=>{  this.toastService.addSingle("ta",'error','',error.error);});
 
- this.toastService.addSingle("tc",'success','','Question Type Added');
 
 }
 onConfirm2() { 
   this.messageService.clear('ccc');
 
   const resp = this.questiontypeservice.updateQuestionType(this.baru);
-  resp.subscribe((data) => this.baru = data);
+  resp.subscribe((data) =>  {this.toastService.addSingle("tut",'success','','Question Type Updated')},
+  (error)=>{  this.toastService.addSingle("tu",'error','',error.error);});
 
- this.toastService.addSingle("tc",'success','','Question Type Updated');
 
 }
 onReject() {
@@ -115,7 +108,9 @@ onReject() {
   this.messageService.clear('cc');
   this.messageService.clear('ccc');
 }
-
+reload(){
+  location.href="main/question/questiontype"
+}
 }
 
 

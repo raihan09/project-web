@@ -21,6 +21,8 @@ import {DialogModule} from 'primeng/dialog';
 import {RadioButtonModule} from 'primeng/radiobutton';
 import {DropdownModule} from 'primeng/dropdown';
 import {FileUploadModule} from 'primeng/fileupload';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import {ConfirmationService} from 'primeng/api';
 
 @NgModule({
     exports: [
@@ -45,7 +47,8 @@ import {FileUploadModule} from 'primeng/fileupload';
         DialogModule,
         RadioButtonModule,
         DropdownModule,
-        FileUploadModule
+        FileUploadModule,
+        ConfirmDialogModule
     ]
 })
 export class NgPrimeModule { }

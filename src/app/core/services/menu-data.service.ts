@@ -27,9 +27,9 @@ export class MenuDataService {
             {
                 Label: 'Questions', Icon: '	far fa-file-alt', RouterLink: null, Childs: [
                     { Label: 'Question Packs', RouterLink: '/main/question', Childs: null, IsChildVisible: false },
-                    {
-                        Label: 'Question Type', RouterLink: '/main/question/questiontype', Childs:null,IsChildVisible:false
-                    },
+                    // {
+                    //     Label: 'Question Type', RouterLink: '/main/question/questiontype', Childs:null,IsChildVisible:false
+                    // },
                     {
                         Label: 'Question List', RouterLink: '/main/question/questiondatabase', Childs: null, IsChildVisible: false
                     }

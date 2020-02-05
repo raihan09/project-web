@@ -42,7 +42,7 @@
                 <td>
                 </td>
                 <td style="text-align: center;">
-                        <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog()"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Edit</button>&nbsp;&nbsp;
+                        <!-- <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog()"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Edit</button>&nbsp;&nbsp; -->
 
                         <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="showConfirm2(assignpack.assignQuestionId)"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;
             </tr>
@@ -116,6 +116,7 @@
        
     </p-toast>
  <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tt"></p-toast>
+ <p-toast [style]="{marginTop: '80px'}" position="top-center" key="ttt" (onClose)="reload()" ></p-toast>
  <p-dialog header="New Assign Question " [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '300px'}" [minY]="70"
  [baseZIndex]="10000">
  
@@ -159,6 +160,7 @@
                     </ng-template>
                 </p-toast>
                 <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tct" (onClose)="reload()" ></p-toast>
     
                
 </p-dialog>

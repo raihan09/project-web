@@ -25,11 +25,14 @@ export class QuestiontypeService {
 
   }
   public deleteQuestionType(id:string){
-    return this.httpClient.delete(this.apiURL + '/question-type/id/' + id);
+    return this.httpClient.delete(this.apiURL + '/question-type/' + id);
 
   }
   public findQuestionTypeByid(id:string){
     return this.httpClient.get(this.apiURL + '/question-type/id/' + id);
 
+  }
+  public getQuestiontypeByName(name:string){
+    return this.httpClient.get(this.apiURL + '/question-type/title/' + name);
   }
 }

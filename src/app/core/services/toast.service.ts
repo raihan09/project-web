@@ -20,7 +20,7 @@ export class ToastService {
     addCOnfirm(key:string, sticky: boolean, severity:string, summary:string, detail:string){
         this.messageService.add({ sticky:sticky,key:key,severity: severity, summary: summary, detail: detail });
     };
-     addSingle(key :string,severity: string, summary: string, detail: string) {
+     addSingle(key :string,severity: string, summary: string, detail: any) {
         this.messageService.add({ key:key,severity: severity, summary: summary, detail: detail });
     }
     addSingle1(severity: string, summary: string, detail: string) {

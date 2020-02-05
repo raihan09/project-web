@@ -21,4 +21,13 @@ export class PackageService {
   public findpackbyid(id:string){
     return this.httpClient.get(this.apiURL + '/package/id/' + id);
   }
+  public addPackage(pack){
+    return this.httpClient.post(this.apiURL + '/package/', pack);
+  }
+  public deletePackage(id){
+    return this.httpClient.delete(this.apiURL + '/package/'+id);
+  }
+  public updatePackage(pack){
+    return this.httpClient.put(this.apiURL + '/package/',pack);
+  }
 }

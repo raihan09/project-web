@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 import { RouteStateService } from 'src/app/core/services/route-state.service';
 import { PackageService } from 'src/app/core/services/package.service';
 import { Router } from '@angular/router';
-import { SelectItem } from 'primeng/api';
+import { SelectItem, MessageService } from 'primeng/api';
+import { Subject } from 'rxjs';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-questiondatabase',
@@ -20,11 +22,17 @@ questpack2:any;
   pageSize: number;
   cities1: SelectItem[];
   selectedCity1:any;
+  question: any;
+  display: boolean;
+  idqp: any;
+  baru: any;
 
   constructor(
     private routeStateService: RouteStateService,
     private questionService:QuestionService,
-    private router:Router) { }
+    private router:Router,
+    private toastService: ToastService,
+    private messageService: MessageService ) { }
 
   ngOnInit() {
     let resp = this.questionService.getAllQuestion();
@@ -55,4 +63,37 @@ questpack2:any;
     goTonewquestion(department: number) {
       this.routeStateService.add('New Question', '/main/question/newquestion', department, false);
     }
+    showDialog(idd: string) {
+      let su = new Subject<any>();
+      this.display = true;
+      this.questionService.findQuestionByid(idd).subscribe((data1) => su.next(data1));
+      su.subscribe(res => this.question = res);
+    
+  }
+  showConfirmdelete(idaw) {
+    this.idqp =idaw;
+    this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure to delete?', detail:'Confirm to proceed'});
+  
+  }
+  
+  showConfirmupdate() {
+    this.messageService.add({key: 'cc', sticky: true, severity:'warn', summary:'Are you sure to delete?', detail:'Confirm to proceed'});
+  
+  }
+  
+onConfirmDelete(){
+  this.messageService.clear('c');
+    let resp = this.questionService.deleteQuestion(this.idqp);
+    resp.subscribe((data) => { this.toastService.addSingle("tt",'success','','Question Deleted');},
+    (error)=>{  this.toastService.addSingle("ta",'error','',error.error);});
+    
+   // this.router.navigateByUrl('/main/question/questionpackdetail/'+this.id);
+  
+}
+reload(){
+  location.href="main/question/questiondatabase"
+}
+onReject() {
+  this.messageService.clear();
+}
 }

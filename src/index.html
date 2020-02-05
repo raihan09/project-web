@@ -9,52 +9,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/assets/images/lwcn-logo-min.png">
 </head>
-<body background="assets/images/bg1.jpg">
+<body background="assets/images/bg1.jpg"></body>
   <app-root></app-root>
   <script>
     function myFunction() {
       var x = document.getElementById("myDIV");
       var y = document.getElementById("myDIV2");
       var z = document.getElementById("myDIV3");
+      var q = document.getElementById("myDIV4");
       
       if (x.style.display === "none") {
-        x.style.display = "none";
+        x.style.display = "block";
         y.style.display="none";
         z.style.display="none";
+        q.style.display="none";
       } else {
         x.style.display = "none";
         y.style.display="none"
         z.style.display="none";
+        q.style.display="none";
       }
     }
     function myFunction2() {
       var x = document.getElementById("myDIV2");
       var y = document.getElementById("myDIV");
-      var z = document.getElementById("myDIV3");
-      
+      var z = document.getElementById(  "myDIV3");
+      var q = document.getElementById("myDIV4");
       if (x.style.display === "none") {
         x.style.display = "block";
         y.style.display="none"
         z.style.display="none";
+        q.style.display="none";
       } else {
         x.style.display = "none";
         y.style.display="none"
         z.style.display="none";
+        q.style.display="none";
       }
     }
     function myFunction3() {
       var x = document.getElementById("myDIV3");
       var y = document.getElementById("myDIV2");
       var z = document.getElementById("myDIV");
+      var q = document.getElementById("myDIV4");
       
       if (x.style.display === "none") {
         x.style.display = "block";
         y.style.display="none"
         z.style.display="none";
+        q.style.display="none";
       } else {
         x.style.display = "none";
         y.style.display="none"
         z.style.display="none";
+        q.style.display="none";
+      }
+    }
+    function myFunction4() {
+      var x = document.getElementById("myDIV4");
+      var y = document.getElementById("myDIV2");
+      var z = document.getElementById("myDIV");
+      var q = document.getElementById("myDIV3");
+      
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display="none"
+        z.style.display="none";
+        q.style.display="none";
+      } else {
+        x.style.display = "none";
+        y.style.display="none"
+        z.style.display="none";
+        q.style.display="none";
       }
     }
     </script>

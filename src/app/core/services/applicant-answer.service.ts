@@ -26,4 +26,12 @@ export class AplicantAnswerService {
   public deleteApplicantAnswer(id){
     return this.httpClient.delete(this.apiURL +'/applicant-answer/'+id);
   }
+  public findHeaderbyid(id:string){
+    return this.httpClient.get(this.apiURL + '/applicant-answer/user/id/' + id);
+
+  }
+  public postApplicantanswer(header){
+    return this.httpClient.post(this.apiURL + '/applicant-answer/detail' , header);
+
+  }
 }

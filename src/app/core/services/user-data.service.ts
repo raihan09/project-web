@@ -13,9 +13,13 @@ export class UserDataService {
 
     constructor() {
         let user = {
-            gender:"",phone:"",fullname:null,userId: 1, userName: "", password: "", emailId: "admin@admin.com", birthDate: new Date('10/28/1992')
+            gender:"aa",phone:"aa",fullname:null,userId: "1", userName: "", password: "", emailId: "admin@admin.com", birthDate: new Date('10/28/1992')
+        };
+        let user1 = {
+            gender:"aa",phone:"aa",fullname:null,userId: "cacbd5ea-179d-4f76-ac96-ec33d6bb64d5", userName: "aa", password: "aa", emailId: "candidate@candidate.com", birthDate: new Date('10/28/1992')
         };
         this.users.push(user);
+        this.users.push(user1);
     }
 
     /**

@@ -20,8 +20,16 @@ export class QuestionService {
     return this.httpClient.get(this.apiURL + '/question/id/' + id);
 
   }
-  public postQuestionImage(){
-    return this.httpClient.get(this.apiURL +'/question/img');
+  public postQuestionImage(quest){
+    return this.httpClient.get(this.apiURL +'/question/img',quest);
   }
-
+  public postQuestionText(quest){
+    return this.httpClient.post(this.apiURL +'/question/text',quest);
+  }
+  public deleteQuestion(id){
+    return this.httpClient.delete(this.apiURL +'/question/'+id);
+  }
+  public updateQuestion(id){
+    return this.httpClient.put(this.apiURL +'/question/id/',id);
+  }
 }

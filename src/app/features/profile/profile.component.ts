@@ -2,11 +2,11 @@ import { UserService } from './../../core/services/user.service';
 import { ProfileService } from './../../core/services/profile.service';
 
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ProfileDataService } from 'src/app/features/profile/profile-data.service';
 import { RouteStateService } from 'src/app/core/services/route-state.service';
-import { Profile } from 'src/app/core/models/profile';
-import { SelectItem } from 'primeng/api';
+import { Profile } from 'src/app/core/models/profile.model';
+import { SelectItem, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/core/services/toast.service';
 interface City{
   name: string;
   code: string;
@@ -26,13 +26,15 @@ display: boolean = false;
   cities1: SelectItem[];
   selectedCity1: any;
   name:string;
+  iduser:any;
 
   constructor(
     private routeStateService: RouteStateService,
-    private profileService: ProfileDataService,
     private profil: ProfileService,
     private router: Router,
-    private userService : UserService) { }
+    private userService : UserService,
+    private toastService: ToastService,
+    private messageService: MessageService ) { }
 
   ngOnInit() {
     let resp = this.userService.getAllUser();
@@ -104,5 +106,27 @@ display: boolean = false;
   //   let resp = this.profil.findProfilebyEmail(name);
   //   resp.subscribe((data) => this.profileid = data);
   // }
+}
+
+DeleteUser(id) {
+  this.iduser=id
+  this.messageService.clear();
+  this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure to delete?', detail:'Confirm to proceed'});
+}
+onConfirmDelete(id) { 
+  this.messageService.clear('c');
+  const resp = this.userService.deleteUser(this.iduser);
+  resp.subscribe((data) => { this.toastService.addSingle("tct",'success','','Candidate Deleted')},
+  (error)=>{  this.toastService.addSingle("tc",'error','',error.error);});
+
+
+}
+reload(){
+  location.href="main/candidates"
+}
+
+onReject() {
+  this.messageService.clear('c');
+  this.messageService.clear('cc');
 }
 }

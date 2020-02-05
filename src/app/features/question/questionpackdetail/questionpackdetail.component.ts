@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { SelectItem, MessageService } from 'primeng/api';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { RouteStateService } from 'src/app/core/services/route-state.service';
-import { ProfileDataService } from '../../profile/profile-data.service';
-import { Profile } from 'src/app/core/models/profile';
+import { Profile } from 'src/app/core/models/profile.model';
 import { PackageQuestionService } from 'src/app/core/services/package-question.service';
 import { Subject } from 'rxjs';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
@@ -31,7 +30,7 @@ export class QuestionpackdetailComponent implements OnInit {
   question: any;
   quest: any;
   baru: any;
-  pack:any;
+  pack:any="";
   arrayList:any[];
   reload:any;
   message:any;

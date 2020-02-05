@@ -31,6 +31,9 @@ export class UserService {
   }
   public findProfilebyEmail(id:string){
     return this.httpClient.get(this.apiURL + '/profile/search/' + id);
-
   }
+  public deleteUser(id){
+    return this.httpClient.delete(this.apiURL + '/user/'+id);
+  }
+  
   }

@@ -1,5 +1,5 @@
 import { ProfileComponent } from './profile.component';
-import { Profile } from 'src/app/core/models/profile';
+import { Profile } from 'src/app/core/models/profile.model';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

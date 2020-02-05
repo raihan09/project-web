@@ -16,6 +16,11 @@ const appRoutes: Routes = [
         loadChildren: () => import('src/app/features/register-user/register-user.module').then(m => m.RegisterUserModule)
     },
     {
+        path: 'candidateinit',
+        loadChildren: () => import('src/app/features/candidateinit/candidateinit.module').then(m => m.CandidateinitModule),
+       
+    },
+    {
         path: 'main',
         component: LayoutComponent,
         children: [{
@@ -38,6 +43,7 @@ const appRoutes: Routes = [
             loadChildren: () => import('src/app/features/assignquestion/assignquestion.module').then(m => m.AssignquestionModule),
             canActivate: [AuthGuard]
         },
+    
         {
             path: 'testresult',
             loadChildren: () => import('src/app/features/applicant-answer/applicant-answer.module').then(m => m.ApplicantAnswerModule),

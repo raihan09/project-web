@@ -6,10 +6,9 @@ import { PackageQuestionService } from 'src/app/core/services/package-question.s
 import { QuestionService } from './../../../core/services/question.service';
 import { UserService } from './../../../core/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { Profile } from 'src/app/core/models/profile';
+import { Profile } from 'src/app/core/models/profile.model';
 import { SelectItem, MessageService } from 'primeng/api';
 import { RouteStateService } from 'src/app/core/services/route-state.service';
-import { ProfileDataService } from '../../profile/profile-data.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { Subject } from 'rxjs';
@@ -85,11 +84,10 @@ getQuestion(){
 DeleteAssinQuestion(){
   this.messageService.clear('cc');
     let resp = this.assignquestService.deleteAssignQuestion(this.idqp);
-    resp.subscribe((data) => console.log(data));
-    console.log(this.idqp)
-    
+    resp.subscribe((data) => { this.toastService.addSingle("ttt",'success','','Question Deleted');},
+    (error)=>{  this.toastService.addSingle("tt",'error','',error.error);});
    // this.router.navigateByUrl('/main/question/questionpackdetail/'+this.id);
-   this.toastService.addSingle("tt",'success','','Question Deleted');
+  
 }
 showConfirm() {
   this.messageService.clear();
@@ -110,10 +108,11 @@ onConfirm() {
   let list:Array<any> = [this.assignquestion];
   console.log(list)
   const resp = this.assignquestService.addAssignQuestion(list);
-  resp.subscribe((data) => console.log(data));
-  this.message = new Object ()
+  resp.subscribe((data) => {this.toastService.addSingle("tct",'success','','Assign Question Added')},
+  (error)=>{  this.toastService.addSingle("tc",'error','',error.error);});
+ 
  // this.router.navigateByUrl('/main/question/questionpackdetail/'+this.id);
- this.toastService.addSingle("tc",'success','','Assign Question Added');
+ 
 
 }
 
@@ -121,7 +120,9 @@ onReject() {
   this.messageService.clear('c');
   this.messageService.clear('cc');
 }
-
+reload(){
+  location.href="main/assignquestion"
+}
 }
 
 

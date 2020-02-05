@@ -38,7 +38,7 @@
                 <td style="text-align: center;">
                    <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog(profiles.userId)"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Detail</button>&nbsp;&nbsp;
 
-                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog(profiles.userId)"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;
+                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="DeleteUser(profiles.userId)"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;
 
             </tr>
 
@@ -82,3 +82,22 @@
        <hr/>
 
 </p-dialog>
+<p-toast position="top-center" key="c"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                    <a type="button" pButton (click)="onConfirmDelete(profiles.userId)"  label="Yes" class="ui-button-success"></a>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tct" (onClose)="reload()" ></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
