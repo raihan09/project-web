@@ -33,4 +33,7 @@ export class AssignquestionService {
   public getAssignQuestionbyUser(userId){
     return this.httpClient.get(this.apiURL + '/assign-question/user/'+userId+'/package');
   }
+  public searchAssign(assign){
+    return this.httpClient.post(this.apiURL + '/assign-question/search',assign);
+  }
 }

@@ -3,7 +3,7 @@ import { AssignquestionService } from './../../../core/services/assignquestion.s
 import { AppAnswer } from './../../../core/models/appAnswer.model';
 import { ApplicantAnswer } from './../../../core/models/applicant-answer.model';
 import { UserService } from './../../../core/services/user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
 import { notification } from 'src/app/core/models/notification.model';
 import { Router, ActivatedRoute, ActivationEnd } from '@angular/router';
@@ -25,7 +25,15 @@ import { ToastService } from 'src/app/core/services/toast.service';
   styleUrls: ['./starttest.component.css'],
   providers: [ConfirmationService]
 })
-export class StarttestComponent implements OnInit {
+export class StarttestComponent implements OnInit,OnDestroy {
+  ngOnDestroy(){
+    let c = [];
+    c.push(this.hours)
+    c.push(this.minutes)
+    c.push(this.seconds)
+    localStorage.setItem("soall",JSON.stringify(c));
+
+  }
   time:any;
   msgs: Message[] = [];
   display1:any;
@@ -73,8 +81,11 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
     this.displayNotifications = false;
 
   }
-
+  
   ngOnInit() {
+    let b = localStorage.getItem("soall"); 
+    let c = JSON.parse(b);
+    console.log("Ini "+c); 
     this.user = this.sessionService.getItem("currentUser");
     this.startTimer();
     console.log(this.gender)
@@ -144,6 +155,8 @@ console.log("userid"+this.user[0].userId)
 
     else{
       this.simpan.push(this.aplicantAnswer);
+      
+
       this.appAnswer= new AppAnswer("asd","")
       this.aplicantAnswer = new ApplicantAnswer(this.header.applicantAnswerId,this.qpack[i],this.appAnswer);
     }

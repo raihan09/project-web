@@ -30,4 +30,7 @@ export class PackageService {
   public updatePackage(pack){
     return this.httpClient.put(this.apiURL + '/package/',pack);
   }
+  public searchPackage(pack){
+    return this.httpClient.post(this.apiURL + '/package/search',pack);
+  }
 }

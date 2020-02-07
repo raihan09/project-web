@@ -34,4 +34,8 @@ export class AplicantAnswerService {
     return this.httpClient.post(this.apiURL + '/applicant-answer/detail' , header);
 
   }
+  public search(header){
+    return this.httpClient.post(this.apiURL + '/applicant-answer/search' , header);
+
+  }
 }

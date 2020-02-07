@@ -34,7 +34,8 @@ questpack2:any;
   packupdate:any='aa';
   report: Object;
   display2: boolean;
-
+  name: any;
+packagesearch:Package;
   constructor(
     private routeStateService: RouteStateService,
     private packService:PackageService,
@@ -151,6 +152,14 @@ resp.subscribe((data) => {this.report=data });
 }
 showDialog2(){
   this.display2 =true
+}
+find(){
+  
+  this.packagesearch = new Package(this.name,null,null);
+  
+  let resp = this.packService.searchPackage(this.packagesearch);
+    resp.subscribe((data) => this.questpack = data );
+
 }
 }
 

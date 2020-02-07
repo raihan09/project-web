@@ -1,3 +1,4 @@
+import { QuestionPackSearh } from './../../../core/models/searchqpack.model';
 import { Component, OnInit } from '@angular/core';
 import { RouteStateService } from 'src/app/core/services/route-state.service';
 import { ToastService } from 'src/app/core/services/toast.service';
@@ -26,6 +27,8 @@ candidate2: any;
   idqp: any;
   message: Object;
   baru: Object;
+  name: any;
+  finds:QuestionPackSearh;
   
   constructor(
     private routeStateService: RouteStateService,
@@ -112,6 +115,13 @@ candidate2: any;
 //   this.messageService.clear('c');
 //   this.messageService.clear('cc');
 // }
+
+}
+find(){
+  
+  this.finds = new QuestionPackSearh(null,this.name,null);
+  let resp = this.applicantanswer.search(this.finds);
+    resp.subscribe((data) => this.all = data );
 
 }
 

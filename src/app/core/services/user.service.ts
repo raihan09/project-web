@@ -30,11 +30,11 @@ export class UserService {
 
   }
   public findProfilebyPhone(id:string){
-    return this.httpClient.get(this.apiURL + '/profile/search/' + id);
+    return this.httpClient.get(this.apiURL + '/user/search/phone/' + id);
 
   }
   public findProfilebyEmail(id:string){
-    return this.httpClient.get(this.apiURL + '/profile/search/' + id);
+    return this.httpClient.get(this.apiURL + '/user/search/email/' + id);
   }
   public deleteUser(id){
     return this.httpClient.delete(this.apiURL + '/user/'+id);

@@ -29,5 +29,8 @@ export class PackageQuestionService {
   public deletePackageQuestion(id){
     return this.httpClient.delete(this.apiURL +'/question-pack/'+id);
   }
+  public searchQPack(questionPack){
+    return this.httpClient.post(this.apiURL + '/question-pack/search/',questionPack);
+  }
   
 }

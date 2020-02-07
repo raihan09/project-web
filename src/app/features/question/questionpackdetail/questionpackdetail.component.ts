@@ -1,3 +1,4 @@
+import { QuestionPackSearh } from './../../../core/models/searchqpack.model';
 import { PackageService } from 'src/app/core/services/package.service';
 import { QuestionPack } from '../../../core/models/question-pack.model';
 import { QuestionService } from './../../../core/services/question.service';
@@ -10,6 +11,7 @@ import { Profile } from 'src/app/core/models/profile.model';
 import { PackageQuestionService } from 'src/app/core/services/package-question.service';
 import { Subject } from 'rxjs';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { QuestionSearch } from 'src/app/core/models/questionseach.model';
 
 @Component({
   selector: 'app-questionpackdetail',
@@ -37,6 +39,12 @@ export class QuestionpackdetailComponent implements OnInit {
   selectedCity1:any;
 idqp:string;
 questt:any;
+  type: any;
+  name: any;
+  questionsearch: QuestionSearch;
+  qpacksearch:QuestionPackSearh;
+  name1:any;
+  type1:any;
 
   constructor(
     private routeStateService: RouteStateService,
@@ -161,5 +169,20 @@ onReject() {
   this.messageService.clear('c');
   this.messageService.clear('cc');
 }
+find(){
+  
+  this.questionsearch = new QuestionSearch(this.type,this.name);
+  console.log(this.questionsearch)
+  let resp = this.questService.findQuestion(this.questionsearch);
+    resp.subscribe((data) => this.quest = data );
 
+}
+find2(){
+  
+  this.qpacksearch = new QuestionPackSearh(this.id,this.name1,this.type1);
+  console.log(this.questionsearch)
+  let resp = this.questPackService.searchQPack(this.qpacksearch);
+    resp.subscribe((data) => this.questpack2 = data );
+
+}
 }

@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs';
   styleUrls: ['dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  total:number;
+  aproved:number;
+  rejected:number;
   approve:any;
   totalCandidates:any;
   totalQuestions:any;
@@ -41,10 +44,10 @@ export class DashboardComponent implements OnInit {
     }
 
     this.doughnutChartData = {
-      labels: ['Active', 'Inactive', 'Deleted'],
+      labels: ['Total', 'Rejected', 'Approved'],
       datasets: [
         {
-          data: [300, 50, 100],
+          data: [this.totalCandidates, 20, 20],
           backgroundColor: [
             "#FF6384",
             "#36A2EB",
@@ -71,6 +74,9 @@ export class DashboardComponent implements OnInit {
     this.totalQuestion();
     this.rejectedCand();
     this.approvedCand();
+    this.total=this.totalCandidates;
+    this.aproved=this.acandidate;
+    this.rejected=this.rcandidate;
    
   }
   totalCandidate(){

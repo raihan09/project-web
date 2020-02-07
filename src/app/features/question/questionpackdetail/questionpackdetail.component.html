@@ -5,21 +5,15 @@
         <div><button pButton type="button"class="ui-button-raised  ui-button-success " style="width: 150px; height: 30px; float:right; font-size: px;" (click)="showDialog1()" >
             <font class="fa fa-plus-circle" style="font-style: Arial; padding-top: 5px;">&nbsp;&nbsp;Add Question</font>
             </button></div>
-            <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
-                    <span class="ui-inputgroup-addon " style="width: 140px;">
-                      <!-- <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 90px; " >
-                      <option value="" selected data-default >Search by</option>
-                      <option value="Username">Username</option>
-                      <option value="Name">Name</option>
-                    </select> -->
-                <p-dropdown [options]="cities1" [(ngModel)]="selectedCity1"></p-dropdown>
-                </span>
-                    <input id="float-input-username" type="text" size="30" pInputText
-                      required style="width: 40px;" >
-                      <div class="ui-inputgroup-addon" style="width: 80px;">
-                        <button pButton type="button" class="ui-button-rounded ui-button-primary" style="height: 30px; width: 60px"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
-                      </div>
-                  </div>
+            <input id="float-input-username" type="text"  pInputText [(ngModel)]="name1"
+            required style="width: 200px;height: 30px;" placeholder="Name..." >
+            &nbsp;
+            <input id="float-input-username" type="text"  pInputText [(ngModel)]="type1"
+            required style="width: 200px;height: 30px;" placeholder="Type...">
+            &nbsp;
+            <button pButton type="button" class="ui-button-rounded ui-button-primary" (click)= "find2()" style="height: 35px; width: 70px;padding-top: 2px;"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
+            &nbsp;
+            <button pButton type="button" class="ui-button-rounded ui-button-secondary" (click)= "ngOnInit()" style="height: 35px; width: 70px;padding-top: 2px;"><i class="pi pi-refresh" style="font-size:20px; padding-top:5px"></i></button>
                 </div>
    
     <p-table [value]="questpack2" [paginator]="true" [rows]="10">
@@ -58,25 +52,20 @@
 <p-dialog header="Question Database" [(visible)]="display2" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
  [resizable]="false" position="top-center">
 
- <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
-        <span class="ui-inputgroup-addon " style="width: 140px;">
-          <!-- <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 90px; " >
-          <option value="" selected data-default >Search by</option>
-          <option value="Username">Username</option>    
-          <option value="Name">Name</option>
-        </select> -->
-    <p-dropdown [options]="cities1" [(ngModel)]="selectedCity1"></p-dropdown>
-    </span>
-        <input id="float-input-username" type="text" size="30" pInputText
-          required style="width: 40px;" >
-          <div class="ui-inputgroup-addon" style="width: 80px;">
-            <button pButton type="button" class="ui-button-rounded ui-button-primary" style="height: 30px; width: 60px"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
-          </div>
-      </div>
-    
+ 
+    <input id="float-input-username" type="text"  pInputText [(ngModel)]="name"
+    required style="width: 200px;height: 30px;" placeholder="Name..." >
+    &nbsp;
+    <input id="float-input-username" type="text"  pInputText [(ngModel)]="type"
+    required style="width: 200px;height: 30px;" placeholder="Type...">
+    &nbsp;
+    <button pButton type="button" class="ui-button-rounded ui-button-primary" (click)= "find()" style="height: 35px; width: 70px;padding-top: 2px;"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
+    &nbsp;
+    <button pButton type="button" class="ui-button-rounded ui-button-secondary" (click)= "showDialog1()" style="height: 35px; width: 70px;padding-top: 2px;"><i class="pi pi-refresh" style="font-size:20px; padding-top:5px"></i></button>
+    <br>
     
         <p-table [value]="quest" [paginator]="true" [rows]="10">
-            <ng-template pTemplate="header">
+           <br> <ng-template pTemplate="header">
                 <tr>
                     <th *ngFor="let col of columns">
                         {{col.header}}

@@ -4,22 +4,15 @@
         <div><button pButton type="button"class="ui-button-raised  ui-button-success " style="width: 150px; height: 30px; float:right; font-size: px;" (click)="showDialog()" >
             <font class="fa fa-plus-circle" style="font-style: Arial; padding-top: 5px;">&nbsp;&nbsp;Add New</font>
             </button></div>
-                     <div class="ui-inputgroup p-col-12" style="width: 500px;" >
-                            <span class="ui-inputgroup-addon " style="width: 200px;">
-                              <!-- <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 90px; " >
-                              <option value="" selected data-default >Search by</option>
-                              <option value="Username">Username</option>
-                              <option value="Name">Name</option>
-                            </select> -->
-                            
-<p-dropdown [options]="cities1" ></p-dropdown>
-                        </span>
-                            <input id="float-input-username" type="text" size="30" pInputText 
-                              required>
-                              <div class="ui-inputgroup-addon" style="width: 140px;">
-                                <button pButton type="button" label="Search" class="ui-button-rounded ui-button-primary"></button>
-                              </div>
-                          </div>
+            <input id="float-input-username" type="text"  pInputText [(ngModel)]="name"
+            required style="width: 200px;height: 30px;" placeholder="Name..." >
+            &nbsp;
+            <input id="float-input-username" type="text"  pInputText [(ngModel)]="type"
+            required style="width: 200px;height: 30px;" placeholder="Type...">
+            &nbsp;
+            <button pButton type="button" class="ui-button-rounded ui-button-primary" (click)= "find2()" style="height: 35px; width: 70px;padding-top: 2px;"><i class="pi pi-search" style="font-size:20px; padding-top:5px"></i></button>
+            &nbsp;
+            <button pButton type="button" class="ui-button-rounded ui-button-secondary" (click)= "ngOnInit()" style="height: 35px; width: 70px;padding-top: 2px;"><i class="pi pi-refresh" style="font-size:20px; padding-top:5px"></i></button>
                         </div>
 
     <p-table [value]="assignpack" [paginator]="true" [rows]="10">

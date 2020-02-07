@@ -22,7 +22,7 @@ interface City{
 export class ProfileComponent implements OnInit {
   columns: any;
 profileid: any;
-  profiles: any;
+  profiles: any = [];
 display: boolean = false;
   pageSize: number;
   pilihan: SelectItem[];
@@ -40,11 +40,12 @@ display: boolean = false;
     private toastService: ToastService,
     private messageService: MessageService,
     private reportService:ReportService ) { 
-      let resp = this.userService.getAllUser();
-      resp.subscribe((data) => this.profiles = data); 
+     
     }
 
   ngOnInit() {
+    let resp = this.userService.getAllUser();
+    resp.subscribe((data) => this.profiles = data);
   
     //resp.subscribe((data) => this.profileid = data);
     this.pageSize = 10;
@@ -83,36 +84,49 @@ display: boolean = false;
   //   resp.subscribe((data) => this.profileid = data);
   // }
    findProfile() {
-    // if (this.selectedCity1 == 'name') {
-    this.profiles = null;
-    let resp = this.userService.findProfilebyName(this.name);
-    console.log(this.name)
-    resp.subscribe((data) => {this.profiles = data});
+    console.log("nama"+this.name)
+    if (this.selectedCity1 === 'name') {
+      if (this.name === undefined||this.name===""){
 
-    
-    // return;
-    // }
-    // else if (this.selectedCity1 === 'phone'){
-    //   let resp = this.profil.findProfilebyPhone(name);
-    // resp.subscribe((data) => this.profiles = data);
-    // return;
-    // }
-    // else if (this.selectedCity1 === 'email'){
-    //   let resp = this.profil.findProfilebyEmail(name);
-    //   resp.subscribe((data) => this.profiles = data);
-    //   return;
-    //}
+        console.log("sini")
+        let resp = this.userService.getAllUser();
+        resp.subscribe((data) => this.profiles = data);
+      }
+      else{
+    const resp = this.userService.findProfilebyName(this.name);
+    resp.subscribe((data) => {this.profiles = data
+    }) 
+  }
+    }
+    else if (this.selectedCity1 === 'phone'){
+      if (this.name === undefined||this.name===""){
 
-  // }
-  // public findProfileByPhone(name){
-  //   let resp = this.profil.findProfilebyPhone(name);
-  //   resp.subscribe((data) => this.profileid = data);
-  // }
-  // public findProfileByEmail(name){
-  //   let resp = this.profil.findProfilebyEmail(name);
-  //   resp.subscribe((data) => this.profileid = data);
-  // }
-}
+        console.log("sini")
+        let resp = this.userService.getAllUser();
+        resp.subscribe((data) => this.profiles = data);
+      }
+      else{
+      const resp = this.userService.findProfilebyPhone(this.name);
+      resp.subscribe((data) => {this.profiles = data
+  
+      }) 
+    }
+    }
+    else if (this.selectedCity1 === 'email'){
+      if (this.name === undefined||this.name===""){
+
+        console.log("sini")
+        let resp = this.userService.getAllUser();
+        resp.subscribe((data) => this.profiles = data);
+      }
+      else{
+      
+      const resp = this.userService.findProfilebyEmail(this.name);
+      resp.subscribe((data) => {this.profiles = data
+      }) 
+    }
+  }
+   }
 
 DeleteUser(id) {
   this.iduser=id

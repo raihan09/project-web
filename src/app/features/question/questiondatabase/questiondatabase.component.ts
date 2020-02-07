@@ -1,3 +1,5 @@
+import { QuestionSearch } from './../../../core/models/questionseach.model';
+import { Question } from './../../../core/models/question.model';
 import { ReportService } from './../../../core/services/report.service';
 import { QuestionService } from './../../../core/services/question.service';
 import { Component, OnInit } from '@angular/core';
@@ -27,6 +29,9 @@ questpack2:any;
   display: boolean;
   idqp: any;
   baru: any;
+  name:any;
+  type:any;
+  questionsearch:QuestionSearch = new QuestionSearch("","")
 
   constructor(
     private routeStateService: RouteStateService,
@@ -111,6 +116,14 @@ reportWrong(){
  
   let resp = this.reportService.reportWrongAnswer();
   resp.subscribe((data) => {this.report=data });
+
+}
+find(){
+  
+  this.questionsearch = new QuestionSearch(this.type,this.name);
+  console.log(this.questionsearch)
+  let resp = this.questionService.findQuestion(this.questionsearch);
+    resp.subscribe((data) => this.quest = data );
 
 }
 }

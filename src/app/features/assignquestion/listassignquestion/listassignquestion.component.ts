@@ -1,3 +1,4 @@
+import { SearchAssignQuestion } from './../../../core/models/searchAssignQuest.model';
 import { AddassignquestionComponent } from './../addassignquestion/addassignquestion.component';
 import { AssignquestionService } from './../../../core/services/assignquestion.service';
 import { AssignQuestion } from './../../../core/models/assignquestion.model';
@@ -36,6 +37,9 @@ candidate2:any;
   idqp: any;
   message: Object;
   baru: Object;
+  search:SearchAssignQuestion;
+  name: any;
+  type: any;
   
   constructor(
     private routeStateService: RouteStateService,
@@ -146,6 +150,12 @@ onReject() {
 }
 reload(){
   location.href="main/assignquestion"
+}
+find2(){
+  this.search = new SearchAssignQuestion(this.name,this.type);
+  let resp = this.assignquestService.searchAssign(this.search)
+    resp.subscribe((data) => this.assignpack = data );
+
 }
 }
 

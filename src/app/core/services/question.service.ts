@@ -32,4 +32,8 @@ export class QuestionService {
   public updateQuestion(id){
     return this.httpClient.put(this.apiURL +'/question/id/',id);
   }
+  public findQuestion(find){
+    return this.httpClient.post(this.apiURL + '/question/search/',find);
+
+  }
 }

@@ -29,20 +29,26 @@
 <button pButton type="button" label="Multiple Choice Text" class="ui-button-raised" onclick="myFunction2() "style="height: 50px;" (click)="getType('Pilihan Ganda Teks')"></button>
 </div>
 <div class="ui-g-12 ui-md-6 ui-lg-3">
+<button pButton type="button" label="Multiple Choice Text 2 Answers" class="ui-button-raised" onclick="myFunction2() "style="height: 50px;" (click)="getType('Pilihan Ganda Teks 2')"></button>
+</div>
+<div class="ui-g-12 ui-md-6 ui-lg-3">
 <button pButton type="button" label="Multiple Choice Img" class="ui-button-raised" onclick="myFunction4() "style="height: 50px;" (click)="getType('Pilihan Ganda Gambar')"></button>
 </div>
+<div class="ui-g-12 ui-md-6 ui-lg-3">
+    <button pButton type="button" label="Multiple Choice Img 2 Answers" class="ui-button-raised" onclick="myFunction4() "style="height: 50px;" (click)="getType('Pilihan Ganda Gambar 2')"></button>
+    </div>
 <div class="ui-g-12 ui-md-6 ui-lg-3">
  <button pButton type="button" label="Scala" class="ui-button-raised" onclick="myFunction3()"style="height: 50px;" (click)="getType('Scala')"></button>
 </div>
 </div>
-<p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+<!-- <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
 multiple="multiple" accept="image/*" maxFileSize="1000000">
 <ng-template pTemplate="content">
     <ul *ngIf="uploadedFiles.length">
         <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
     </ul>
 </ng-template>
-</p-fileUpload>
+</p-fileUpload> -->
 
 
 <div id="myDIV"  style="padding-left: 50px;padding-right: 50px;display: none;">
