@@ -1,3 +1,4 @@
+import { ReportService } from './../../../core/services/report.service';
 import { QuestionService } from './../../../core/services/question.service';
 import { Component, OnInit } from '@angular/core';
 import { RouteStateService } from 'src/app/core/services/route-state.service';
@@ -15,8 +16,8 @@ import { ToastService } from 'src/app/core/services/toast.service';
 export class QuestiondatabaseComponent implements OnInit {
 
   columns: any[];
-
-
+  report:any;
+  display2:boolean;
 quest:any;
 questpack2:any;
   pageSize: number;
@@ -32,7 +33,8 @@ questpack2:any;
     private questionService:QuestionService,
     private router:Router,
     private toastService: ToastService,
-    private messageService: MessageService ) { }
+    private messageService: MessageService,
+    private reportService:ReportService ) { }
 
   ngOnInit() {
     let resp = this.questionService.getAllQuestion();
@@ -95,5 +97,20 @@ reload(){
 }
 onReject() {
   this.messageService.clear();
+}
+showDialog2(){
+ this. display2=true;
+}
+reportCorrect(){
+ 
+    let resp = this.reportService.reportCorrectAnswer();
+    resp.subscribe((data) => {this.report=data});
+  
+}
+reportWrong(){
+ 
+  let resp = this.reportService.reportWrongAnswer();
+  resp.subscribe((data) => {this.report=data });
+
 }
 }

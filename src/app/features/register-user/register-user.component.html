@@ -1,5 +1,5 @@
 
-<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc" (onClose)="onClickGoToLogin()"></p-toast>
 <div class="user-regisration">
   <div class="ng-header">
     <div class="ng-header-left left">
@@ -32,13 +32,13 @@
                       <p-message severity="error" text="User name is required"
                         *ngIf="userform.controls['name'].errors['required']"></p-message>
                     </div>
-                    <div class="p-col-12">
+                    <!-- <div class="p-col-12">
                       <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
                         <input id="float-input-password" type="password" size="30" pInputText formControlName="password"
                           placeholder="password" required>
-                      </div>
-                    </div>
+                      </div> -->
+                    <!-- </div>
                     <div class="p-col-12" *ngIf="userform.controls['password'].errors && userform.controls['password'].dirty">
                       <p-message severity="error" text="Password is required"
                         *ngIf="userform.controls['password'].errors['required']"></p-message>
@@ -46,7 +46,7 @@
                         *ngIf="userform.
 
                         controls['password'].errors['minlength'] "></p-message>
-                    </div>
+                    </div> -->
                     <div class="p-col-12 ">
                       <div class="ui-inputgroup">
                         <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
@@ -84,16 +84,22 @@
                               placeholder="Phone" required>
                           </div>
                         </div>
-
+                        <div class="p-col-12">
+                          <div class="ui-inputgroup">
+                            <span class="ui-inputgroup-addon"><i class="fa fa-home"></i></span>
+                            <input id="float-input-username" type="text" size="30" pInputText formControlName="address"
+                              placeholder="Address" required>
+                          </div>
+                        </div>
 
                         <!-- <p-dropdown class="p-col-12" [options]="asd" formControlName="gender" placeholder="Gender" required></p-dropdown> -->
                         <div class="p-col-12">
                           <div class="ui-inputgroup">
                             <span class="ui-inputgroup-addon"><i class="fa fa-venus-mars"></i></span>
-                            <select class="custom-select" id="inputGroupSelect01" pInputText  required placeholder="Phone" formControlName="gender">
-                              <option value="" selected data-default>Gender</option>
-                              <option value="Male">Male</option>
-                              <option value="Female">Female</option>
+                            <select select id="choice" required pInputText formControlName="gender">
+                             <option [ngValue]="null" disabled selected hidden>Gender</option>
+                               <option value="L">Male</option>
+                              <option value="P">Female</option>
 
                             </select>
                           </div>

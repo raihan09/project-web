@@ -19,6 +19,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./listassignquestion.component.css']
 })
 export class ListassignquestionComponent implements OnInit {
+  forupdate:any = "";
   assignquestion:AssignQuestion;
   columns: any[];
   profile: Profile[];
@@ -60,7 +61,10 @@ candidate2:any;
       {label:'Name', value:'a'},
       {label:'Email', value:'b'}
   ];
-
+  let resp2 = this.packageService.getAllpack();
+resp2.subscribe((data) => this.questionpack = data);
+let resp1 = this.candidateService.getAllUser();
+resp1.subscribe((data) => this.candidate = data);
     // this.profile = this.profileService.getProfileList();
   }
 
@@ -69,10 +73,12 @@ candidate2:any;
   }
   showDialog() {
     this.display = true;
-    let resp2 = this.packageService.getAllpack();
-  resp2.subscribe((data) => this.questionpack = data);
-  let resp1 = this.candidateService.getAllUser();
-  resp1.subscribe((data) => this.candidate = data);
+}
+showDialog2(id) {
+  this.display2 = true;
+  let resp3 = this.assignquestService.findAssignQuestionbyid(id);
+  resp3.subscribe((data) => {this.forupdate = data,console.log(this.forupdate.pack)});
+
 }
 goTonewassignquestion(department: number) {
   this.routeStateService.add("New Assignquestion", "/main/assignquestion/newassignquestion", department, false);
@@ -88,6 +94,7 @@ DeleteAssinQuestion(){
     (error)=>{  this.toastService.addSingle("tt",'error','',error.error);});
    // this.router.navigateByUrl('/main/question/questionpackdetail/'+this.id);
   
+  
 }
 showConfirm() {
   this.messageService.clear();
@@ -100,6 +107,12 @@ this.idqp=idaw;
 console.log(idaw)
 }
 
+showConfirm3(idaw) {
+  this.messageService.clear();
+  this.messageService.add({key: 'cu', sticky: true, severity:'warn', summary:'Are you sure to update?', detail:'Confirm to proceed'});
+this.idqp=idaw;
+}
+
 onConfirm() {
   this.messageService.clear('c');
  this.assignquestion = new AssignQuestion ( this.candidate2,this.questionpack2, 'active');
@@ -110,6 +123,17 @@ onConfirm() {
   const resp = this.assignquestService.addAssignQuestion(list);
   resp.subscribe((data) => {this.toastService.addSingle("tct",'success','','Assign Question Added')},
   (error)=>{  this.toastService.addSingle("tc",'error','',error.error);});
+ 
+ // this.router.navigateByUrl('/main/question/questionpackdetail/'+this.id);
+ 
+
+}
+onConfirmUpdate() {
+  console.log("Baru:"+this.forupdate)
+
+  const resp = this.assignquestService.updateAssignQuestion(this.forupdate);
+  resp.subscribe((data) => {this.toastService.addSingle("tcut",'success','','Assign Question Updated')},
+  (error)=>{  this.toastService.addSingle("tcu",'error','',error.error);});
  
  // this.router.navigateByUrl('/main/question/questionpackdetail/'+this.id);
  

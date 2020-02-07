@@ -42,7 +42,7 @@
                 <td>
                 </td>
                 <td style="text-align: center;">
-                        <!-- <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog()"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Edit</button>&nbsp;&nbsp; -->
+                        <!-- <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog2(assignpack.assignQuestionId)"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Edit</button>&nbsp;&nbsp; -->
 
                         <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="showConfirm2(assignpack.assignQuestionId)"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;
             </tr>
@@ -51,12 +51,12 @@
   
 </p-panel> &nbsp; 
 
-<p-dialog header="Update Assign Question " [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '300px'}" [minY]="70"
+<p-dialog header="Update Assign Question " [(visible)]="display2" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '300px'}" [minY]="70"
  [baseZIndex]="10000">
  
         <div class="row mb-6 ui-g-12">
             <div class="col-sm-6 ui-g-6" ><strong>Question Pack : </strong></div>
-            <p-dropdown class="col-sm-6 ui-g-6"  [options]="questionpack" placeholder="Select new Pack" [(ngModel)]="questionpack2" optionLabel="packageName"></p-dropdown>
+            <p-dropdown class="col-sm-6 ui-g-6"  [options]="questionpack" placeholder="Select new Pack" [(ngModel)]="forupdate.pack" optionLabel="packageName"></p-dropdown>
             
             
         </div>
@@ -64,19 +64,19 @@
         
         <div class="row mb-6 ui-g-12">
             <div class="col-sm-3 ui-g-6"><strong>Candidate : </strong></div>
-            <p-dropdown class="col-sm-6 ui-g-6" [options]="candidate"  placeholder="Select new Candidate" [(ngModel)]="candidate2" optionLabel="profile.profileName"></p-dropdown>
+            <p-dropdown class="col-sm-6 ui-g-6" [options]="candidate"  placeholder="Select new Candidate" [(ngModel)]="forupdate.user" optionLabel="profile.profileName"></p-dropdown>
             
         </div>
         <hr/>
         <div class="p-col-12" style="padding-top: 10px;">
             <div class="ui-g-12 ui-md-6 " >
-            <button pButton type="button" class="ui-button-success" style="height: 40px;" (click)="showConfirm()"><i class="pi pi-plus" style="padding-top: 8px;" ></i>&nbsp;Add</button>
+            <button pButton type="button" class="ui-button-success" style="height: 40px;" (click)="showConfirm3()"><i class="pi pi-plus" style="padding-top: 8px;" ></i>&nbsp;Update</button>
             </div>
             <div class="ui-g-12 ui-md-6 ">
             <button  pButton type="button" class="ui-button-danger" style="height: 40px;" (click)="display=false"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
             </div>
             </div>
-            <p-toast position="top-center" key="c"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
+            <p-toast position="top-center" key="cu"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
                     <ng-template let-message pTemplate="message">
                         <div style="text-align: center">
                             <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="ui-g ui-fluid">
                             <div class="ui-g-6">
-                                    <a type="button" pButton (click)="onConfirm()"  label="Yes" class="ui-button-success"></a>
+                                    <a type="button" pButton (click)="onConfirmUpdate()"  label="Yes" class="ui-button-success"></a>
                             </div>
                             <div class="ui-g-6">
                                 <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
@@ -93,7 +93,8 @@
                         </div>
                     </ng-template>
                 </p-toast>
-                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tc"></p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tcu"></p-toast>
+                <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tcut" (onClose)="reload()" ></p-toast>
     
                
 </p-dialog>

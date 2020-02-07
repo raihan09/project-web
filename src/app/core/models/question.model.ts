@@ -2,7 +2,6 @@ import { CorrectAnswer } from './correctAnswer.model';
 import { Choice } from 'src/app/core/models/choice.model';
 export class Question{
     constructor(
-        private questionId: any,
         private questionType: any ,
         private questionTitle: any,
         private questionDesc: any,

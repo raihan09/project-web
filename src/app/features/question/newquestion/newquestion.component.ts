@@ -20,7 +20,7 @@ export class NewquestionComponent implements OnInit {
   idqp: any;
   answer: CorrectAnswer = new CorrectAnswer('','')
   choice :Choice = new Choice('','','','','')
-  question: Question = new Question(null,this.typenew,null,null,null,this.choice,this.answer,'active')
+  question: Question = new Question(this.typenew,null,null,null,this.choice,this.answer,'active')
 title:any;
 deskripsi:any;
 
@@ -39,24 +39,20 @@ deskripsi:any;
   goToPacktDetails(department: number) {
     this.routeStateService.loadPrevious();
   }
-  onUpload(event) {
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
-    }
-
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-}
+ 
 onBasicUploadAuto(event) {
   this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded with Auto Mode'});
 }
 showConfirmadd() {
 
-  this.messageService.add({key: 'cc', sticky: true, severity:'warn', summary:'Are you sure to delete?', detail:'Confirm to proceed'});
+  this.question = new Question(this.typenew,this.title,this.deskripsi,null,this.choice,this.answer,'active')
+console.log(this.question)
+  this.messageService.add({key: 'cc', sticky: true, severity:'warn', summary:'Are you sure to add?', detail:'Confirm to proceed'});
 
 }
 onConfirmAdd(quest){
   this.messageService.clear('cc');
-    let resp = this.questionService.postQuestionText(quest);
+    let resp = this.questionService.postQuestionText(this.question);
     resp.subscribe((data) => {this.toastService.addSingle("tt",'success','','Question Added');},
     (error)=>{  this.toastService.addSingle("ta",'error','',error.error);});
     
@@ -65,11 +61,10 @@ onConfirmAdd(quest){
 }
 getType(type){
   let resp = this.questionTypeService.getQuestiontypeByName(type);
-  resp.subscribe((data) => {this.typenew = data
-    this.question = new Question(null,this.typenew,this.title,this.deskripsi,null,this.choice,this.answer,'active')});
+  resp.subscribe((data) => {this.typenew = data,console.log("type:"+this.typenew.questionTypeTitle)});
  
-  console.log(this.typenew)
-  console.log(this.question)
+  
+  console.log("question:"+this.question)
 }
 AddQuestion(){
   let resp = this.questionService.postQuestionText(this.question);
@@ -80,4 +75,16 @@ AddQuestion(){
 reload(){
   location.href="main/question/questiondatabase"
 }
+onReject() {
+  this.messageService.clear();
+}
+onUpload(event) {
+  for(let file of event.files) {
+      this.uploadedFiles.push(file);
+  }
+  
+  this.messageService.add({severity: 'info', summary: 'Success', detail: 'File Uploaded'});
+}
+
+
 }

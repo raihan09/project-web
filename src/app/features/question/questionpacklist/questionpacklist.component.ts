@@ -8,6 +8,7 @@ import { RouteStateService } from 'src/app/core/services/route-state.service';
 import { Router } from '@angular/router';
 import { Package } from 'src/app/core/models/package.model';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { ReportService } from 'src/app/core/services/report.service';
 interface City{
   name:string;
   code:string;
@@ -31,13 +32,16 @@ questpack2:any;
   idpack: any;
   displayU: boolean;
   packupdate:any='aa';
+  report: Object;
+  display2: boolean;
 
   constructor(
     private routeStateService: RouteStateService,
     private packService:PackageService,
     private router:Router,
     private toastService: ToastService,
-     private messageService: MessageService ) { }
+     private messageService: MessageService ,
+     private reportService: ReportService) { }
 
   ngOnInit() {
     let resp = this.packService.getAllpack();
@@ -120,6 +124,33 @@ reload(){
 }
 onReject() {
   this.messageService.clear();
+}
+reportCorrect(){
+ 
+  let resp = this.reportService.reportPackageCorrect();
+  resp.subscribe((data) => {this.report=data});
+
+}
+reportWrong(){
+
+let resp = this.reportService.reportPackageWrong();
+resp.subscribe((data) => {this.report=data });
+
+}
+reportCorrectQuestPack(){
+ 
+  let resp = this.reportService.reportPackQuestCorrect();
+  resp.subscribe((data) => {this.report=data});
+
+}
+reportWrongQuestPack(){
+
+let resp = this.reportService.reportPackQuestWrong();
+resp.subscribe((data) => {this.report=data });
+
+}
+showDialog2(){
+  this.display2 =true
 }
 }
 

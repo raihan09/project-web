@@ -1,6 +1,7 @@
 <app-header-breadcrumb></app-header-breadcrumb>
 <p-panel header="Candidate List">
 <div class="p-col-12">
+       
                      <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
                             <span class="ui-inputgroup-addon " style="width: 140px;">
                               <!-- <select class="custom-select" id="inputGroupSelect01" pInputText style="width: 90px; " >
@@ -8,7 +9,7 @@
                               <option value="Username">Username</option>
                               <option value="Name">Name</option>
                             </select> -->
-                        <p-dropdown [options]="cities1" [(ngModel)]="selectedCity1" ></p-dropdown>
+                        <p-dropdown [options]="pilihan" [(ngModel)]="selectedCity1" ></p-dropdown>
                         </span>
                             <input id="float-input-username" type="text" size="30" pInputText [(ngModel)]="name"
                               required style="width: 40px;" >
@@ -36,10 +37,10 @@
                 <td>
                 </td>
                 <td style="text-align: center;">
-                   <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog(profiles.userId)"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Detail</button>&nbsp;&nbsp;
+                   <button  pButton type="button"  class="ui-button-rounded" style="width: 60px; height: 30px;font-size: 11px;padding-top: 3px;" (click)="showDialog(profiles.userId)"><i class="fab fa-wpforms" style="font-size: 11px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Detail</button>&nbsp;&nbsp;
 
-                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 80px; height: 30px;font-size: 12px;" (click)="DeleteUser(profiles.userId)"><i class="fas fa-trash-alt" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;
-
+                  <button pButton type="button" class="ui-button-rounded ui-button-danger"style="width: 60px; height: 30px;font-size: 11px;padding-top: 3px;" (click)="DeleteUser(profiles.userId)"><i class="fas fa-trash-alt" style="font-size: 11px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Delete</button>&nbsp;&nbsp;
+                  <button pButton type="button" class="ui-button-rounded ui-button-warning"style="width: 60px; height: 30px;font-size: 11px;padding-top: 3px;" (click)="reportCandidate(profiles.userId)"><i class="fas fa-print" style="font-size: 11px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Report</button>
             </tr>
 
         </ng-template>

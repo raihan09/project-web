@@ -25,6 +25,10 @@ export class UserService {
     return this.httpClient.get(this.apiURL + '/user/name/' + name);
 
   }
+  public findProfilebyName(name:string){
+    return this.httpClient.get(this.apiURL + '/user/search/name/' + name);
+
+  }
   public findProfilebyPhone(id:string){
     return this.httpClient.get(this.apiURL + '/profile/search/' + id);
 
@@ -35,5 +39,10 @@ export class UserService {
   public deleteUser(id){
     return this.httpClient.delete(this.apiURL + '/user/'+id);
   }
-  
+  public login(user){ 
+    return this.httpClient.post(this.apiURL + '/login',user);
+  }
+  public register(user){
+    return this.httpClient.post(this.apiURL + '/user',user);
+  }
   }

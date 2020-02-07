@@ -19,7 +19,7 @@ export class AssignquestionService {
     return this.httpClient.get(this.apiURL + '/assign-question/');
   }
   public findAssignQuestionbyid(id:string){
-    return this.httpClient.get(this.apiURL + '/question-pack/id/' + id);
+    return this.httpClient.get(this.apiURL + '/assign-question/id/' + id);
   }
   public addAssignQuestion(AssignQuestion){
     return this.httpClient.post(this.apiURL + '/assign-question', AssignQuestion);
@@ -27,8 +27,8 @@ export class AssignquestionService {
   public deleteAssignQuestion(id){
     return this.httpClient.delete(this.apiURL + '/assign-question/'+id);
   }
-  public updateAssignQuestion(AssignQuestion,id){
-    return this.httpClient.put(this.apiURL + '/assign-question/'+id,AssignQuestion);
+  public updateAssignQuestion(AssignQuestion){
+    return this.httpClient.put(this.apiURL + '/assign-question/',AssignQuestion);
   }
   public getAssignQuestionbyUser(userId){
     return this.httpClient.get(this.apiURL + '/assign-question/user/'+userId+'/package');

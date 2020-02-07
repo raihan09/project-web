@@ -10,7 +10,7 @@
  <div class="dropdown ng-header-right right">
     <button class="dropbtn">
       <a
-        ><span [innerHtml]="user.emailId" class="user-name"></span
+        ><span [innerHtml]="user[0].profile.email" class="user-name"></span
         ><i class="fa fa-user"></i
       ></a>
     </button>
@@ -54,7 +54,7 @@
                 <p-header>{{ "Soal Nomor " + (i + 1) }} </p-header>
                 <!-- <div class="col-md-4"> -->
 
-                <div class="ui-g-12">
+                <!-- <div class="ui-g-12">
                   <div class="ui-g-1" *ngFor="let item of qpack; let i = index">
                     <button
                       pButton
@@ -65,7 +65,7 @@
                       {{ i + 1 }}
                     </button>
                   </div>
-                </div>
+                </div> -->
 
                 <!-- </div> -->
                 <!-- /.box-body -->
@@ -76,10 +76,12 @@
                   <p>{{ pack.question.questionDesc }}</p>
                 </p-card>
                 <br>
-                <strong> Answer:</strong>
-                <br> <br>
+             
                 <div *ngIf="pack?.question?.questionType?.questionTypeTitle === 'Pilihan Ganda Teks'; else templateName5">
-                <p-card>
+                  <strong> Answer:</strong>
+                <p>Pilih jawaban yang paling benar !</p>
+                <br> <br>
+                  <p-card>
                     <div class="form-group">
                   <div class="ui-g">
                     <div class="ui-g-6">
@@ -113,7 +115,10 @@
           </div> 
                  <ng-template #templateName5>
                                         <div *ngIf="pack?.question?.questionType?.questionTypeTitle === 'Pilihan Ganda Gambar'; else templateName6">
-                                            <p-card>
+                                          <strong> Answer:</strong>
+                                          <p>Pilih jawaban yang paling benar !</p>
+                                          <br> <br> 
+                                          <p-card>
                                                 <div class="form-group">
                                               <div class="ui-g">
                                                 <div class="ui-g-6">
@@ -145,10 +150,29 @@
                                         </div>
                                     </ng-template>
                                     <ng-template #templateName6>
-                                        <div class="ui-g">
+                                      <div *ngIf="pack?.question?.questionType?.questionTypeTitle === 'Essay'; else templateName7">
                                             <textarea></textarea>
                                         </div>
                                     </ng-template>
+                                    <ng-template #templateName7>
+                                      <strong> Answer:</strong>
+                                      <p>Pilih 2 jawaban yang paling benar !</p>
+                                      <br> <br> 
+                                      <p-card>
+                                          <div class="form-group">
+                                              <div *ngIf="pack?.question?.questionType?.questionTypeTitle === 'Pilihan Ganda Teks 2'; else templateName5">
+                                              <div class="ui-g">
+                                                  <div class="ui-g-6"><p-checkbox name="group1" value="{{pack.question.choice.choiceA}}" label="{{pack.question.choice.choiceA}}" [(ngModel)]="selectedAnswer" inputId="a"></p-checkbox></div>
+                                                  <div class="ui-g-6"><p-checkbox name="group1" value="{{pack.question.choice.choiceB}}" label="{{pack.question.choice.choiceB}}" [(ngModel)]="selectedAnswer" inputId="b"></p-checkbox></div>
+                                                  <div class="ui-g-6"><p-checkbox name="group1" value="{{pack.question.choice.choiceC}}" label="{{pack.question.choice.choiceC}}" [(ngModel)]="selectedAnswer" inputId="c"></p-checkbox></div>
+                                                  <div class="ui-g-6"><p-checkbox name="group1" value="{{pack.question.choice.choiceD}}" label="{{pack.question.choice.choiceD}}" [(ngModel)]="selectedAnswer" inputId="d"></p-checkbox></div>
+                                                  <div class="ui-g-6"><p-checkbox name="group1" value="{{pack.question.choice.choiceE}}" label="{{pack.question.choice.choiceE}}" [(ngModel)]="selectedAnswer" inputId="d"></p-checkbox></div>
+                                                </div>
+                                          </div>
+                                        </div>
+                                        </p-card>
+                                           </ng-template>
+                                       
                                   
 
                 
@@ -168,7 +192,7 @@
                   
                   </div>
                   <div class="ui-g-1">
-                      <div *ngIf="i + 1 == qpack.length; else templateName4" >
+                      <div *ngIf="i + 1 == qpack.length; else templateName8" >
                         <button
                           type="button"
                           pButton type="button"
@@ -181,20 +205,34 @@
                       </div>
                     </div>
                     <div class="ui-g-1 ">
-                      <ng-template #templateName4>
-                           
+                      <ng-template #templateName8>
+                       <div *ngIf="i + 1 != qpack.length && pack?.question?.questionType?.questionTypeTitle === 'Pilihan Ganda Teks 2'; else templateName9">
                         <button
                           type="button"
                           pButton type="button"
             
-                          (click)="nextQuest(i)"
+                          (click)="nextQuest1(i)"
                           style="padding-top: 4px; height: 30px;"
-                        >Next
+                        >Next1
                           <i class="fa fa-forward"></i> 
                         </button>
-                
+                      </div>
                       </ng-template>
                     </div>
+                    <div class="ui-g-1 ">
+                        <ng-template #templateName9>       
+                          <button
+                            type="button"
+                            pButton type="button"
+              
+                            (click)="nextQuest(i)"
+                            style="padding-top: 4px; height: 30px;"
+                          >Next
+                            <i class="fa fa-forward"></i> 
+                          </button>
+                  
+                        </ng-template>
+                      </div>
                 </div>
             </p-footer>
              
@@ -222,14 +260,38 @@
   [minY]="70"
   [baseZIndex]="10000"
 >
-  <div><b>User Name: </b><i [innerHtml]="user.userName"></i></div>
-  <div><b>Fullname: </b><i [innerHtml]="user.fullname"></i></div>
-  <div><b>Email Id: </b><i [innerHtml]="user.emailId"></i></div>
-  <div>
-    <b>Birthdate: </b><i [innerHtml]="user.birthDate | date: 'dd/MM/yyyy'"></i>
-  </div>
-  <div><b>Gender: </b><i [innerHtml]="user.gender"></i></div>
-  <div><b>Phone: </b><i [innerHtml]="user.phone"></i></div>
+<div class="row mb-6 ui-g-12">
+  <div class="col-sm-6 ui-g-6">Username</div>
+  <div class="col-sm-6 ui-g-offset-6">:&nbsp;<i [innerHtml]="user[0].username"></i></div>
+
+</div>
+<hr/>
+<div class="row mb-6 ui-g-12">
+   <div class="col-sm-6 ui-g-6">Fullname</div>
+   <div class="col-sm-6 ui-g-offset-6">:&nbsp;<i [innerHtml]="user[0].profile.profileName"></i></div>
+
+</div>
+<hr/>
+<div class="row mb-6 ui-g-12">
+<div class="col-sm-6 ui-g-6">Email</div>
+<div class="col-sm-6 ui-g-offset-6">:&nbsp;<i [innerHtml]="user[0].profile.email"></i></div>
+</div>
+<hr/>
+<div class="row mb-6 ui-g-12">
+  <div class="col-sm-6 ui-g-6">Birthdate</div>
+  <div class="col-sm-6 ui-g-offset-6">:&nbsp;<i [innerHtml]="user[0].profile.dob | date:'dd/MM/yyyy'"></i></div>
+ </div>
+ <hr/>
+ <div class="row mb-6 ui-g-12">
+  <div class="col-sm-6 ui-g-6">Gender</div>
+  <div class="col-sm-6 ui-g-offset-6">:&nbsp;<i [innerHtml]="user[0].profile.gender"></i></div>
+ </div>
+ <hr/>
+ <div class="row mb-6 ui-g-12">
+  <div class="col-sm-6 ui-g-6">Phone</div>
+  <div class="col-sm-6 ui-g-offset-6">:&nbsp;<i [innerHtml]="user[0].profile.phone"></i></div>
+ </div>
+ <hr/>
 </p-dialog>
 <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
 
@@ -247,3 +309,4 @@
     
 </p-dialog>
 <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tt" (onClose)="reload1()" ></p-toast>
+<p-toast [style]="{marginTop: '80px'}" position="top-center" key="tcu"></p-toast>

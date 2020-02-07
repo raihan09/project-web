@@ -19,7 +19,7 @@ import { notification } from 'src/app/core/models/notification.model';
 })
 export class CandidateinitComponent implements OnInit {
 qpack:any;
-  user: User;
+  user: any;
 
   displayNotifications: boolean;
 
@@ -45,14 +45,15 @@ qpack:any;
   ngOnInit() {
 
     this.user = this.sessionService.getItem("currentUser");
+    console.log("user:"+this.user[0].username)
     this.notifications = [];
     for (var i = 1; i <= 5; i++) {
       var notificationObj = new notification("Message " + i, new Date(), null)
       this.notifications.push(notificationObj);
     }
-    console.log(this.user.userId)
-    let resp = this.assignQuestionService.getAssignQuestionbyUser(this.user.userId);
-    resp.subscribe((data) => {this.qpack = data, console.log(this.qpack)});
+    console.log("iduser:"+this.user[0].userId)
+    let resp = this.assignQuestionService.getAssignQuestionbyUser(this.user[0].userId);
+    resp.subscribe((data) => {this.qpack = data, console.log("paket"+this.qpack.packageName)});
     //Start watching for user inactivity.
     this.userIdle.startWatching();
 
@@ -75,10 +76,6 @@ qpack:any;
 
   showNotificationSidebar() {
     this.displayNotifications = true;
-  }
-
-  toggleMenu() {
-    this.menuDataService.toggleMenuBar.next(true);
   }
   goToCandidateQuestion(id: string) {
     // let resp = this.packService.findpackbyid(id);

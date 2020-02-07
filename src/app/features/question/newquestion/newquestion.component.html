@@ -26,16 +26,23 @@
 <button pButton type="button" label="Essay" class="ui-button-raised" onclick="myFunction()" style="height: 50px;" (click)="getType('Essay')"></button>
 </div>
 <div class="ui-g-12 ui-md-6 ui-lg-3">
-<button pButton type="button" label="Multiple Choice Text" class="ui-button-raised" onclick="myFunction2() "style="height: 50px;" (click)="getType('Pilihan Ganda')"></button>
+<button pButton type="button" label="Multiple Choice Text" class="ui-button-raised" onclick="myFunction2() "style="height: 50px;" (click)="getType('Pilihan Ganda Teks')"></button>
 </div>
 <div class="ui-g-12 ui-md-6 ui-lg-3">
-<button pButton type="button" label="Multiple Choice Img" class="ui-button-raised" onclick="myFunction4() "style="height: 50px;" (click)="getType('Pilihan Ganda')"></button>
+<button pButton type="button" label="Multiple Choice Img" class="ui-button-raised" onclick="myFunction4() "style="height: 50px;" (click)="getType('Pilihan Ganda Gambar')"></button>
 </div>
 <div class="ui-g-12 ui-md-6 ui-lg-3">
  <button pButton type="button" label="Scala" class="ui-button-raised" onclick="myFunction3()"style="height: 50px;" (click)="getType('Scala')"></button>
 </div>
 </div>
-  
+<p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
+multiple="multiple" accept="image/*" maxFileSize="1000000">
+<ng-template pTemplate="content">
+    <ul *ngIf="uploadedFiles.length">
+        <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+    </ul>
+</ng-template>
+</p-fileUpload>
 
 
 <div id="myDIV"  style="padding-left: 50px;padding-right: 50px;display: none;">
@@ -78,7 +85,7 @@
 
                     <div style="padding-top: 200px;">
                         <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <button pButton type="button" class="ui-button-success" style="height: 40px;width: 80px;margin-left: 480px;"><i class="pi pi-plus" style="padding-top: 8px;" (click)="AddQuestion()" ></i>&nbsp;Add</button>
+                        <button pButton type="button" class="ui-button-success" style="height: 40px;width: 80px;margin-left: 480px;"><i class="pi pi-plus" style="padding-top: 8px;" (click)="showConfirmadd()" ></i>&nbsp;Add</button>
                         </div>
                         <div class="ui-g-12 ui-md-6 ui-lg-6" >
                         <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;width: 80px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
@@ -91,7 +98,8 @@
         <div class="p-col-12"  style="padding-left: 50px;padding-right: 50px;"   >
                 <h4 class="first">Options :</h4>
                 <div class= "ui-g-12 ui-md-6 ui-lg-4">
-    <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Options A"></p-fileUpload>
+    <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Options A"></p-fileUpload>
+                    
 </div>
             <div class= "ui-g-12 ui-md-6 ui-lg-4" >
         <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Options B"></p-fileUpload>
@@ -145,7 +153,7 @@
         
                             <div style="padding-top: 200px;">
                                 <div class="ui-g-12 ui-md-6 ui-lg-6">
-                                <button pButton type="button" class="ui-button-success" style="height: 40px;width: 80px;margin-left: 480px;"><i class="pi pi-plus" style="padding-top: 8px;" (click)="AddQuestion()" ></i>&nbsp;Add</button>
+                                <button pButton type="button" class="ui-button-success" style="height: 40px;width: 80px;margin-left: 480px;"(click)="showConfirmadd()"><i class="pi pi-plus" style="padding-top: 8px;"  ></i>&nbsp;Add</button>
                                 </div>
                                 <div class="ui-g-12 ui-md-6 ui-lg-6" >
                                 <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;width: 80px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
@@ -158,5 +166,22 @@
         
 </div>
 </p-panel>
+<p-toast position="top-center" key="cc"[modal]="true" (onClose)="onReject()"  [baseZIndex]="5000">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                    <a type="button" pButton (click)="onConfirmAdd()"  label="Yes" class="ui-button-success"></a>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" (click)="onReject()" pButton label="No" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
 <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tt" (onClose)="reload()" ></p-toast>
 <p-toast [style]="{marginTop: '80px'}" position="top-center" key="ta"></p-toast>

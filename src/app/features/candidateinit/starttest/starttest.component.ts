@@ -33,12 +33,12 @@ export class StarttestComponent implements OnInit {
   selectedValue:any;
   header:any;
   qpack:any;
-  user: User;
+  user: any;
 indeks=0;
 gender="asd";
 appAnswer = new AppAnswer("belumadajawaban","belumadajawaban");
 aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this.appAnswer)
-
+  selectedAnswer: string[] = [];
   displayNotifications: boolean;
 
   notifications: notification[];
@@ -51,7 +51,7 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
   question:any;
   seconds: number =0;
   minutes: number = 0;
-  hours: number = 0; 
+  hours: number = 0;
   floorhour: number = 0;
   interval;
   showDialog() {
@@ -69,12 +69,13 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
     private applicantAnswerService:AplicantAnswerService,
     private confirmationService: ConfirmationService,
     private toastService: ToastService,
-    private assignQuestionService :AssignquestionService) { 
+    private assignQuestionService :AssignquestionService) {
     this.displayNotifications = false;
 
   }
 
   ngOnInit() {
+    this.user = this.sessionService.getItem("currentUser");
     this.startTimer();
     console.log(this.gender)
     this.id = this.routes.snapshot.paramMap.get('id');
@@ -82,8 +83,9 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
     this.findPackQuestbyIdpack(this.id)
     this.findPackbyId(this.id)
     console.log(this.qpack)
-    this.user = this.sessionService.getItem("currentUser");
-    this.findHeaderByid(this.user.userId)
+
+console.log("userid"+this.user[0].userId)
+    this.findHeaderByid(this.user[0].userId)
     this.notifications = [];
     for (var i = 1; i <= 5; i++) {
       var notificationObj = new notification("Message " + i, new Date(), null)
@@ -99,8 +101,8 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
     this.userIdle.onTimeout().subscribe(() => {
       this.logout();
     });
-    let resp = this.assignQuestionService.getAssignQuestionbyUser(this.user.userId);
-    resp.subscribe((data) => {this.assign = data, console.log(this.assign)}); 
+    let resp = this.assignQuestionService.getAssignQuestionbyUser(this.user[0].userId);
+    resp.subscribe((data) => {this.assign = data, console.log(this.assign)});
   }
   findPackbyId(idd) {
     let resp = this.packageService.findpackbyid(idd);
@@ -117,10 +119,6 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
   showNotificationSidebar() {
     this.displayNotifications = true;
   }
-
-  toggleMenu() {
-    this.menuDataService.toggleMenuBar.next(true);
-  }
   findPackQuestbyIdpack(idd) {
     let resp = this.questionPackService.findpackQuestionbyidPack(idd);
   resp.subscribe((data) => {this.qpack = data,console.log('type:'+ this.qpack.question.questionTypeTitle)});
@@ -128,6 +126,9 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
   findHeaderByid(idd) {
     let resp = this.applicantAnswerService.findHeaderbyid(idd);
   resp.subscribe((data) => {this.header = data,console.log("header:"+this.header.applicantAnswerId)});
+  }
+  save2jawaban(){
+    this.appAnswer = new AppAnswer(this.selectedAnswer[0],this.selectedAnswer[1])
   }
   nextQuest(i){
     this.indeks ++;
@@ -139,29 +140,60 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
         this.aplicantAnswer = this.simpan[this.indeks];
 
       }
-      
-    
+
+
     else{
       this.simpan.push(this.aplicantAnswer);
       this.appAnswer= new AppAnswer("asd","")
       this.aplicantAnswer = new ApplicantAnswer(this.header.applicantAnswerId,this.qpack[i],this.appAnswer);
     }
-    
+
     console.log(this.simpan)
+  
+}
+nextQuest1(i){
+  console.log("jumlah"+this.selectedAnswer.length)
+  if(this.selectedAnswer.length >2){
+    this.toastService.addSingle("tcu",'error','',"Pilih Maksimal 2 Jawaban")
+    console.log("sini")
   }
+  else{
+
+  this.indeks ++;
+  this.save2jawaban();
+  console.log(i)
+  console.log("indeks ke-"+this.indeks);
+  console.log("situassadsaasasdsad")
+  this.aplicantAnswer = new ApplicantAnswer(this.header,this.qpack[i],this.appAnswer);
+
+    if(this.simpan[this.indeks] != null){
+      this.aplicantAnswer = this.simpan[this.indeks];
+
+    }
+
+
+  else{
+    this.simpan.push(this.aplicantAnswer);
+    this.appAnswer= new AppAnswer("asd","")
+    this.aplicantAnswer = new ApplicantAnswer(this.header.applicantAnswerId,this.qpack[i],this.appAnswer);
+  }
+
+  console.log(this.simpan)
+  }
+}
   prevQuest(i){
     this.indeks--;
     console.log("indeks ke-"+this.indeks);
     console.log(this.simpan);
 
     this.aplicantAnswer = this.simpan[this.indeks];
-   
-    
+
+
   }
   numberQuestion(i){
     this.indeks =i;
     console.log("ini "+i);
-   
+
   }
   postAnswer() {
     let resp = this.applicantAnswerService.postApplicantanswer(this.simpan);
@@ -169,16 +201,16 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
   }
   confirm1() {
     this.confirmationService.confirm({
-        message: 'Are you sure that you want to proceed?',
+        message: 'Are you sure that you want to proceed? You cant change your answer after submit it',
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
           this.aplicantAnswer = new ApplicantAnswer(this.header,this.qpack[this.indeks],this.appAnswer);
           this.simpan.push(this.aplicantAnswer);
-        
+
           this.postAnswer();
-         
-        
+
+
         if(this.assign[1]!=null){
 
           this.toastService.addSingle("tt",'success','','Jawaban tersimpan');
@@ -186,7 +218,7 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
         else{ this.display1=true}
         },
         reject: () => {
-          
+
         }
     });
 }
@@ -224,7 +256,7 @@ pauseTimer() {
   this.aplicantAnswer = new ApplicantAnswer(this.header,this.qpack[this.indeks],this.appAnswer);
   this.simpan.push(this.aplicantAnswer);
 
-  this.postAnswer();    
+  this.postAnswer();
   if(this.assign[1]!=null){
 
     this.toastService.addSingle("tt",'success','','Waktu habis, Jawaban sudah direkam');

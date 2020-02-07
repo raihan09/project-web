@@ -1,8 +1,15 @@
 <app-header-breadcrumb></app-header-breadcrumb>
 <p-panel header="Question Pack List">
-    <div><button pButton type="button"class="ui-button-raised  ui-button-success " style="width: 150px; height: 30px; float:right; font-size: px;" (click)="showDialogAdd()" >
-        <font class="fa fa-plus-circle" style="font-style: Arial; padding-top: 5px;">&nbsp;&nbsp;Add New</font>
-        </button></div>
+        <div class="p-col-2" style=" float: right; justify-content: space-evenly; ">
+                <div style="display: flex; justify-content: space-evenly;">
+                    <button class="p-col-1 " pButton type="button" class="ui-button-warning " style="height: 40px; width: 65px;" (click)="showDialog2()">
+                        <i class="pi pi-print" style=" font-size: 30px;padding-top: 4px;"></i>
+                    </button>
+                    <button class="p-col-1 " pButton type="button"class="  ui-button-success" style="width: 100px; height: 40px;" (click)="showDialogAdd()" >
+                            <i class="fa fa-plus-circle" style="font-style: Arial;padding-top: 10px;">&nbsp;&nbsp;Add New</i>
+                    </button>
+                </div>
+            </div> 
 <div class="p-col-12">
         <div class="ui-inputgroup p-col-6" style="height: 60px; width:500px"  >
                 <span class="ui-inputgroup-addon " style="width: 140px;">
@@ -164,3 +171,46 @@
 </p-toast>
 <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tcct" (onClose)="reload()" ></p-toast>
 <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tcc"></p-toast>
+<p-dialog  [(visible)]="display2" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+[resizable]="false">
+<p-header class="pi pi-print" style>
+    Report
+</p-header>
+<div class="p-col-12" style="display: flex;justify-content: space-evenly;">
+    <div class="p-col-6"style=" justify-content: space-evenly; ">
+        <h3 style="text-align: center;">Report most correct answered package</h3>
+        <div style="display: flex; justify-content: space-evenly;">
+            <button class="p-col-1 " pButton type="button" class="ui-button-primary " style="height: 40px; width: 100px;"label="Download" (click)="reportCorrect()" >
+          
+            </button>
+        </div>
+    </div>
+            
+    <div class="p-col-6" style=" justify-content: space-evenly; ">
+        <h3 style="text-align: center;">Report most wrong answered package</h3>
+        <div style="display: flex; justify-content: space-evenly;">
+            <button class="p-col-4 " pButton type="button"class="  ui-button-primary" style="width: 100px; height: 40px;" label="Download" (click)="reportWrong()" >
+                              </button>
+        </div>
+    </div> 
+</div>
+<div class="p-col-12" style="display: flex;justify-content: space-evenly;">
+        <div class="p-col-6"style=" justify-content: space-evenly; ">
+            <h3 style="text-align: center;">Report most correct answered question in package</h3>
+            <div style="display: flex; justify-content: space-evenly;">
+                <button class="p-col-1 " pButton type="button" class="ui-button-primary " style="height: 40px; width: 100px;"label="Download" (click)="reportCorrect()" >
+              
+                </button>
+            </div>
+        </div>
+                
+        <div class="p-col-6" style=" justify-content: space-evenly; ">
+            <h3 style="text-align: center;">Report most wrong answered question in package</h3>
+            <div style="display: flex; justify-content: space-evenly;">
+                <button class="p-col-4 " pButton type="button"class="  ui-button-primary" style="width: 100px; height: 40px;" label="Download" (click)="reportWrong()" >
+                                  </button>
+            </div>
+        </div> 
+    </div>
+
+</p-dialog>

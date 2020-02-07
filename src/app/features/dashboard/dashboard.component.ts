@@ -1,5 +1,7 @@
+import { ReportService } from './../../core/services/report.service';
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,14 +9,19 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  approve:any;
+  totalCandidates:any;
+  totalQuestions:any;
+  rcandidate:any;
+  acandidate:any;
   barChartData: any;
 
   doughnutChartData: any;
 
   msgs: any[];
 
-  constructor(translate: TranslateService) {
+  constructor(translate: TranslateService,
+    private reportService:ReportService) {
     this.barChartData = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -60,6 +67,26 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.totalCandidate();
+    this.totalQuestion();
+    this.rejectedCand();
+    this.approvedCand();
+   
   }
-
+  totalCandidate(){
+    let resp= this.reportService.totalCandidate();
+    resp.subscribe((data)=> (this.totalCandidates=data))  
+  }
+  totalQuestion(){
+    let resp= this.reportService.totalQuestion();
+    resp.subscribe((data)=> (this.totalQuestions=data))
+  }
+  rejectedCand(){
+    let resp= this.reportService.rejectedCand();
+    resp.subscribe((data)=> (this.rcandidate=data))
+  }
+  approvedCand(){
+    let resp= this.reportService.approvedCand();
+    resp.subscribe((data)=> (this.acandidate=data))
+  }
 }

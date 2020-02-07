@@ -1,5 +1,6 @@
+import { AssignquestionService } from './../../core/services/assignquestion.service';
+import { UserService } from './../../core/services/user.service';
 import { Component, OnInit } from '@angular/core';
-import { UserDataService } from 'src/app/core/services/user-data.service';
 import { User } from 'src/app/core/models/user.model';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { RouteStateService } from 'src/app/core/services/route-state.service';
@@ -14,8 +15,9 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  userName: string;
+  display :boolean;
+  user: User = new User("", "",null)
+  userget: any;
 
   password: string;
 
@@ -24,37 +26,61 @@ export class LoginComponent implements OnInit {
   version: string;
 
   msgs: any[];
+  assign:any="";
 
   constructor(
-    private userService: UserDataService,
+    private userService: UserService,
     private toastService: ToastService,
     private routeStateService: RouteStateService,
     private sessionService: SessionService,
     public translate: TranslateService,
-    private userContextService: UserContextService
+    private userContextService: UserContextService,
+    private assignQuestionService:AssignquestionService,
   ) { }
 
   ngOnInit() {
-    this.userName = "";
-    this.password = "";
+ 
+  
 
     // this.msgs = "[{ severity: 'info', detail: 'UserName: admin' }, { severity: 'info', detail: 'Password: password' }]";
   }
-
-  onClickLogin() {
-    let user: User = this.userService.getUserByUserNameAndPassword(this.userName, this.password);
-    if (user.userId==="1") {
-      this.userContextService.setUser(user);
-      this.routeStateService.add("Home", '/main/home', null, true);
-      return;
-    } else if (user.userId==="cacbd5ea-179d-4f76-ac96-ec33d6bb64d5") {
-      this.userContextService.setUser(user);
-      this.routeStateService.add("candidateinit", '/candidateinit', null, true);
-      return;
-    }
-    this.toastService.addSingle("tc",'error', '', 'Invalid user.');
-    return;
+  findAssign(){
+    const resp1 = this.assignQuestionService.getAssignQuestionbyUser(this.userget[0].userId);
+    resp1.subscribe((data) => {this.assign = data,this.directLogin(),console.log(this.assign[0])})
   }
 
+  onClickLogin() {
+    console.log(this.user)
+    const resp = this.userService.login(this.user);
+    resp.subscribe((data) => {this.userget = data, console.log("role:" + this.userget[0].role.roleName ),this.findAssign()},
+    
+    (error)=>{  this.toastService.addSingle("tc",'error','','Invalid User');})
+
+
+    
+  }
+ directLogin(){
  
+  if (this.userget[0].role.roleName === "admin") {
+    this.userContextService.setUser(this.userget);
+    this.routeStateService.add("Home", '/main/home', null, true);
+    return;
+  } else if (this.userget[0].role.roleName === "candidate") {
+    if(this.assign[0]===undefined){
+      this.display=true;
+    }
+
+   else {this.userContextService.setUser(this.userget);
+    this.routeStateService.add("candidateinit", '/candidateinit', null, true);
+    return;
+   }
+  }
+  else {this.toastService.addSingle("tc", 'error', '', 'Invalid user.');
+  return;
 }
+}
+close(){
+  this.display=false;
+}
+ }
+

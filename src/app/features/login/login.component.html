@@ -25,14 +25,14 @@
               <p-messages [(value)]="msgs"></p-messages>
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-              <input id="input-username" type="text" size="30" pInputText [(ngModel)]="userName"
+              <input id="input-username" type="text" size="30" pInputText [(ngModel)]="user.username"
                 placeholder="Enter Username">
             </div>
           </div>
           <div class="p-col-12">
             <div class="ui-inputgroup">
               <span class="ui-inputgroup-addon"><i class="fa fa-key"></i></span>
-              <input id="input-password" type="password" size="30" pInputText [(ngModel)]="password"
+              <input id="input-password" type="password" size="30" pInputText [(ngModel)]="user.password"
                 placeholder="Enter Password">
             </div>
           </div>
@@ -40,7 +40,7 @@
         </div>
         
           <div class="p-col-12 text-center">
-            <button pButton type="button" label="{{ 'Login' | translate}}" class="ui-button-raised "
+            <button pButton type="button" label="{{ 'Login'}}" class="ui-button-raised "
               (click)="onClickLogin()"></button>
           </div>
           <div class="p-col-12 text-center">
@@ -63,6 +63,18 @@
   </div>
 </div>
 </div>
+<p-dialog header="Linov Psikotest" [(visible)]="display" [modal]="true" [style]="{width: '50vw'}"[baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" >
+    <div style="padding: 20px;text-align: center;"> 
+      <p>Anda sudah mengerjakan semua soal psikotest atau pihak recruiter belum menyiapkan soal untuk anda. Silahkan menghubungi yang bersangkutan untuk informasi lebih lanjut. </p>
 
+    </div>     
+    <p-footer>
+      <div class="p-col-2 p-offset-5">
+        <button type="button" pButton icon="pi pi-check" (click)="close()" label="OK"></button>
+      </div>
+    </p-footer>
+    
+</p-dialog>
 
 

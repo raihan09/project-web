@@ -1,3 +1,5 @@
+import { Subject } from 'rxjs';
+import { ReportService } from './../../core/services/report.service';
 import { UserService } from './../../core/services/user.service';
 import { ProfileService } from './../../core/services/profile.service';
 
@@ -23,10 +25,12 @@ profileid: any;
   profiles: any;
 display: boolean = false;
   pageSize: number;
-  cities1: SelectItem[];
+  pilihan: SelectItem[];
   selectedCity1: any;
   name:string;
   iduser:any;
+  report: Object;
+
 
   constructor(
     private routeStateService: RouteStateService,
@@ -34,11 +38,14 @@ display: boolean = false;
     private router: Router,
     private userService : UserService,
     private toastService: ToastService,
-    private messageService: MessageService ) { }
+    private messageService: MessageService,
+    private reportService:ReportService ) { 
+      let resp = this.userService.getAllUser();
+      resp.subscribe((data) => this.profiles = data); 
+    }
 
   ngOnInit() {
-    let resp = this.userService.getAllUser();
-    resp.subscribe((data) => this.profiles = data);
+  
     //resp.subscribe((data) => this.profileid = data);
     this.pageSize = 10;
 
@@ -47,7 +54,7 @@ display: boolean = false;
       { field: 'profile', header: 'Email', field2: 'email' },
       { field: 'profile', header: 'Phone', field2: 'phone' }
     ];
-    this.cities1 = [
+    this.pilihan = [
       {label: 'Find By', value: null},
       {label: 'Name', value: 'name'},
       {label: 'Phone', value: 'phone'},
@@ -77,11 +84,10 @@ display: boolean = false;
   // }
    findProfile() {
     // if (this.selectedCity1 == 'name') {
-    this.profiles === null;
-    let resp = this.userService.findUserbyname(this.name);
+    this.profiles = null;
+    let resp = this.userService.findProfilebyName(this.name);
     console.log(this.name)
     resp.subscribe((data) => {this.profiles = data});
-    this.router.navigateByUrl("/main/candidates")
 
     
     // return;
@@ -128,5 +134,11 @@ reload(){
 onReject() {
   this.messageService.clear('c');
   this.messageService.clear('cc');
+}
+reportCandidate(id){
+ 
+  let resp = this.reportService.reportCandidate(id);
+  resp.subscribe((data) => {this.report=data});
+
 }
 }

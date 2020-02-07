@@ -12,3 +12,6 @@ option[value=""][disabled] {
 option {
   color: black;
 }
+
+#choice option { color: black; }
+.empty { color: gray; }

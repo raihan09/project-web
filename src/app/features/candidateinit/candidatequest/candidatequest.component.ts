@@ -19,7 +19,7 @@ import { PackageQuestionService } from 'src/app/core/services/package-question.s
 })
 export class CandidatequestComponent implements OnInit {
   qpack:any;
-  user: User;
+  user: any;
 
   displayNotifications: boolean;
 
@@ -78,10 +78,6 @@ export class CandidatequestComponent implements OnInit {
 
   showNotificationSidebar() {
     this.displayNotifications = true;
-  }
-
-  toggleMenu() {
-    this.menuDataService.toggleMenuBar.next(true);
   }
   findPackbyId(idd) {
     let resp = this.packageService.findpackbyid(idd);
