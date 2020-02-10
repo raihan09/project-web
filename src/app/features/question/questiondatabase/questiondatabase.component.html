@@ -26,7 +26,7 @@
                 <th *ngFor="let col of columns">
                     {{col.header}}
                 </th>
-                <th>Status</th>
+                
                 <th>Actions</th>
             </tr>
         </ng-template>
@@ -35,8 +35,7 @@
                 <td *ngFor="let col of columns">
                     <div *ngIf="col.field2 == ''">{{quest[col.field]}}</div>
                     <div>{{quest[col.field][col.field2]}}</div>
-                </td>   
-                <td>
+               
                 </td>
                 <td style="text-align: center;">
                   <button  pButton type="button"  class="ui-button-rounded" style="width: 80px; height: 30px;font-size: 12px;" (click)="showDialog(quest.questionId)"><i class="fab fa-wpforms" style="font-size: 15px;text-align: center;padding-top: 6px;"></i>&nbsp;&nbsp;Detail</button>&nbsp;&nbsp;
