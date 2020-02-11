@@ -110,7 +110,7 @@
     </p-toast>
  <p-toast [style]="{marginTop: '80px'}" position="top-center" key="tt"></p-toast>
  <p-toast [style]="{marginTop: '80px'}" position="top-center" key="ttt" (onClose)="reload()" ></p-toast>
- <p-dialog header="New Assign Question " [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '300px'}" [minY]="70"
+ <p-dialog styleClass="mydialog" header="New Assign Question " [(visible)]="display" [modal]="true" [responsive]="true" [style]="{width: '550px', minWidth: '300px'}" [minY]="70"
  [baseZIndex]="10000">
  
         <div class="row mb-6 ui-g-12">
@@ -123,7 +123,7 @@
         
         <div class="row mb-6 ui-g-12">
             <div class="col-sm-3 ui-g-6"><strong>Candidate : </strong></div>
-            <p-dropdown class="col-sm-6 ui-g-6" [options]="candidate"  placeholder="Select a Candidate" [(ngModel)]="candidate2" optionLabel="profile.profileName"></p-dropdown>
+            <p-dropdown appendTo=""  class="col-sm-6 ui-g-6" [options]="candidate"  placeholder="Select a Candidate" [(ngModel)]="candidate2" optionLabel="profile.profileName"></p-dropdown>
             
         </div>
         <hr/>

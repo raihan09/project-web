@@ -114,6 +114,13 @@
         </div>
         </div>
         <hr/>
+        <div class="row mb-6 ui-g-12">
+            <div class="col-sm-3 ui-g-6"><strong>Active State : </strong></div>
+            <div class="col-sm-6 ui-g-6">
+            <textarea [rows]="1" [cols]="30" pInputTextarea autoResize="autoResize" [(ngModel)]="packupdate.activeState" placeholder="please type active"></textarea>
+        </div>
+        </div>
+        <hr/>
         <div class="p-col-12" style="padding-top: 10px;">
             <div class="ui-g-12 ui-md-6 " >
             <button pButton type="button" class="ui-button-success" style="height: 40px;" (click)="showConfirmUpdate()"><i class="pi pi-plus" style="padding-top: 8px;" ></i>&nbsp;Update</button>

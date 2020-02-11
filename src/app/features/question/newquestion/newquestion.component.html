@@ -9,15 +9,15 @@
 </span>
 
 </div>
-<div class="p-col-4">
+<div class="p-col-6">
         <span class="ui-float-label">
                 <textarea id="float-input" rows="2" cols="30" pInputTextarea class="p-col-6" [(ngModel)]='deskripsi'></textarea>
                 <label for="float-input" style="font-size: 16px; color: black;">Question Description</label>
             </span>
 </div>
-<div class="p-col-2">
+<!-- <div class="p-col-2">
 <p-fileUpload #fubauto mode="basic" name="demo[]" url="http://bootcamp.linovhr.com:8080/psikotest/question/img" accept="image/*" maxFileSize="1000000" (onUpload)="onBasicUploadAuto($event)" [auto]="true" chooseLabel="Insert image"></p-fileUpload>
-</div>
+</div> -->
 
  <div class="p-col-6" style="padding-left: 50px;padding-right: 50px;">
 <h5 class="first " style ="font-size: 16px"><span class='notbold'>Question Type :</span></h5>
@@ -29,16 +29,16 @@
 <button pButton type="button" label="Multiple Choice Text" class="ui-button-raised" onclick="myFunction2() "style="height: 50px;" (click)="getType('Pilihan Ganda Teks')"></button>
 </div>
 <div class="ui-g-12 ui-md-6 ui-lg-3">
-<button pButton type="button" label="Multiple Choice Text 2 Answers" class="ui-button-raised" onclick="myFunction2() "style="height: 50px;" (click)="getType('Pilihan Ganda Teks 2')"></button>
+<button pButton type="button" label="Multiple Choice Text 2" class="ui-button-raised" onclick="myFunction5() "style="height: 50px;" (click)="getType('Pilihan Ganda Teks 2')"></button>
 </div>
-<div class="ui-g-12 ui-md-6 ui-lg-3">
+<!-- <div class="ui-g-12 ui-md-6 ui-lg-3">
 <button pButton type="button" label="Multiple Choice Img" class="ui-button-raised" onclick="myFunction4() "style="height: 50px;" (click)="getType('Pilihan Ganda Gambar')"></button>
 </div>
 <div class="ui-g-12 ui-md-6 ui-lg-3">
     <button pButton type="button" label="Multiple Choice Img 2 Answers" class="ui-button-raised" onclick="myFunction4() "style="height: 50px;" (click)="getType('Pilihan Ganda Gambar 2')"></button>
-    </div>
+    </div> -->
 <div class="ui-g-12 ui-md-6 ui-lg-3">
- <button pButton type="button" label="Scala" class="ui-button-raised" onclick="myFunction3()"style="height: 50px;" (click)="getType('Scala')"></button>
+ <button pButton type="button" label="Scala" class="ui-button-raised" onclick="myFunction3()"style="height: 50px;" (click)="getType('Skala')"></button>
 </div>
 </div>
 <!-- <p-fileUpload name="demo[]" url="./upload.php" (onUpload)="onUpload($event)"
@@ -51,55 +51,94 @@ multiple="multiple" accept="image/*" maxFileSize="1000000">
 </p-fileUpload> -->
 
 
-<div id="myDIV"  style="padding-left: 50px;padding-right: 50px;display: none;">
-    <div class="p-col-12" style="padding-top: 100px;">
-        <div class="ui-g-12 ui-md-6 ui-lg-6" style="padding-left: 500px;">
-        <button pButton type="button" class="ui-button-success" style="height: 40px;width: 80px;"><i class="pi pi-plus" style="padding-top: 8px;"></i>&nbsp;Add</button>
-        </div>
-        <div class="ui-g-12 ui-md-6 ui-lg-6 "style="padding-right: 500px;">
-        <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;width: 80px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
-        </div>
-        </div>
+<div class="p-col-4 p-offset-4" style="padding-top: 100px;">
+        <div id="myDIV"  style="display: none; justify-content:space-evenly;">
+                <div class="ui-g-4 ">
+                    <button (click)="showConfirmadd()" pButton type="button" class="ui-button-success" style="height: 40px;" ><i class="pi pi-plus" style="padding-top: 8px;"></i>&nbsp;Add</button>
+                </div>
+                <div class="ui-g-4">
+                    <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;" ><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
+                </div>
+            </div>
 </div>
 
 <div id="myDIV2" style="display: none;">
     <div class="p-col-12"  style="padding-left: 50px;padding-right: 50px;"   >
-        <h4 class="first">Options :</h4>
-        <div class= "ui-g-12 ui-md-6 ui-lg-6">
-        <textarea rows="1" cols="30" pInputTextarea placeholder="Options A." [(ngModel)]='question.choice.choiceA' style="width: 500px;"></textarea>
+        
+            <h4 class="first">Options :</h4>
+            <div class= "ui-g-12 ui-md-6 ui-lg-6">
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Options A." [(ngModel)]='question.choice.choiceA' ></textarea>
             </div>
-    <div class= "ui-g-12 ui-md-6 ui-lg-6">
-            <textarea rows="1" cols="30" pInputTextarea placeholder="Options B." [(ngModel)]='question.choice.choiceB' style="width: 500px;"></textarea>
+            <div class= "ui-g-12 ui-md-6 ui-lg-6">
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Options B." [(ngModel)]='question.choice.choiceB' ></textarea>
+            </div>
+            <div class= "ui-g-12 ui-md-6 ui-lg-6">
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Options C." [(ngModel)]='question.choice.choiceC' ></textarea>
+            </div>
+            <div class= "ui-g-12 ui-md-6 ui-lg-6">
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Options D." [(ngModel)]='question.choice.choiceD' ></textarea>
+            </div>
+            <div class= "ui-g-12 ui-md-6 ui-lg-6">
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Options E." [(ngModel)]='question.choice.choiceE'></textarea>
+            </div>
+                                
+           <div class="ui-g-12">
+                <h4 class="first">Answer :</h4>
+                 <div class= "ui-g-12 ui-md-6 ui-lg-6 ">
+                    <textarea rows="1" cols="30" pInputTextarea placeholder="Right Answer 1" [(ngModel)]='question.correctAnswer.answer1'></textarea>
+                </div>  
+            </div>
+
+                   
+            <div class="ui-g-4 ui-md-1 ui-md-offset-5">
+                    <button (click)="showConfirmadd()" pButton type="button" class="ui-button-success" style="height: 40px;"><i class="pi pi-plus" style="padding-top: 8px;"></i>&nbsp;Add</button>
+                    </div>
+                    <div class="ui-g-4 ui-md-1" >
+                    <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
+                    </div>
+    </div>
+</div>
+<div id="myDIV5" style="display: none;">
+        <div class="p-col-12"  style="padding-left: 50px;padding-right: 50px;"   >
+            <h4 class="first">Options :</h4>
+            <div class= "ui-g-12 ui-md-6 ui-lg-6">
+            <textarea rows="1" cols="30" pInputTextarea placeholder="Options A." [(ngModel)]='question.choice.choiceA' ></textarea>
                 </div>
         <div class= "ui-g-12 ui-md-6 ui-lg-6">
-                <textarea rows="1" cols="30" pInputTextarea placeholder="Options C." [(ngModel)]='question.choice.choiceC' style="width: 500px;"></textarea>
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Options B." [(ngModel)]='question.choice.choiceB' ></textarea>
                     </div>
             <div class= "ui-g-12 ui-md-6 ui-lg-6">
-                    <textarea rows="1" cols="30" pInputTextarea placeholder="Options D." [(ngModel)]='question.choice.choiceD' style="width: 500px;"></textarea>
+                    <textarea rows="1" cols="30" pInputTextarea placeholder="Options C." [(ngModel)]='question.choice.choiceC' ></textarea>
                         </div>
                 <div class= "ui-g-12 ui-md-6 ui-lg-6">
-                        <textarea rows="1" cols="30" pInputTextarea placeholder="Options E." [(ngModel)]='question.choice.choiceE'style="width: 500px;"></textarea>
+                        <textarea rows="1" cols="30" pInputTextarea placeholder="Options D." [(ngModel)]='question.choice.choiceD' ></textarea>
                             </div>
-       
-        <div class= "ui-g-12 ui-md-6 ui-lg-12">
+                    <div class= "ui-g-12 ui-md-6 ui-lg-6">
+                            <textarea rows="1" cols="30" pInputTextarea placeholder="Options E." [(ngModel)]='question.choice.choiceE'></textarea>
+                                </div>
+                                
+           <div class="ui-g-12">
                 <h4 class="first">Answer :</h4>
-                <textarea rows="1" cols="30" pInputTextarea placeholder="Right Answer 1" [(ngModel)]='question.correctAnswer.answer1'style="width: 500px;"></textarea>
-            </div>
-            <div class= "ui-g-12 ui-md-6 ui-lg-12">
-                <textarea rows="1" cols="30" pInputTextarea placeholder="Right Answer 2" [(ngModel)]='question.correctAnswer.answer2'style="width: 500px;"></textarea>
+            <div class= "ui-g-12 ui-md-6 ui-lg-6 ">
+                    
+                    <textarea rows="1" cols="30" pInputTextarea placeholder="Right Answer 1" [(ngModel)]='question.correctAnswer.answer1'></textarea>
+                </div>
+                <div class= "ui-g-12 ui-md-6 ui-lg-6 ">
+                    <textarea rows="1" cols="30" pInputTextarea placeholder="Right Answer 2" [(ngModel)]='question.correctAnswer.answer2'></textarea>
+                        </div>
                     </div>
-
-                    <div style="padding-top: 200px;">
-                        <div class="ui-g-12 ui-md-6 ui-lg-6">
-                        <button pButton type="button" class="ui-button-success" style="height: 40px;width: 80px;margin-left: 480px;"><i class="pi pi-plus" style="padding-top: 8px;" (click)="showConfirmadd()" ></i>&nbsp;Add</button>
-                        </div>
-                        <div class="ui-g-12 ui-md-6 ui-lg-6" >
-                        <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;width: 80px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
-                        </div>
-                        </div>
     
-</div>
-</div>
+                  
+                            <div class="ui-g-4 ui-md-1 ui-md-offset-5">
+                            <button (click)="showConfirmadd()" pButton type="button" class="ui-button-success" style="height: 40px;"><i class="pi pi-plus" style="padding-top: 8px;"></i>&nbsp;Add</button>
+                            </div>
+                            <div class="ui-g-4 ui-md-1" >
+                            <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
+                            </div>
+                          
+        
+    </div>
+    </div>
 <div id="myDIV4" style="display: none;">
         <div class="p-col-12"  style="padding-left: 50px;padding-right: 50px;"   >
                 <h4 class="first">Options :</h4>
@@ -142,29 +181,28 @@ multiple="multiple" accept="image/*" maxFileSize="1000000">
         <div class="p-col-12"  style="padding-left: 50px;padding-right: 50px;"   >
                 <h4 class="first">Options :</h4>
                 <div class= "ui-g-12 ui-md-6 ui-lg-6">
-                <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 1" [(ngModel)]='question.choice.choiceA' style="width: 500px;"></textarea>
+                <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 1" [(ngModel)]='question.choice.choiceA'></textarea>
                     </div>
             <div class= "ui-g-12 ui-md-6 ui-lg-6">
-                    <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 2" [(ngModel)]='question.choice.choiceB' style="width: 500px;"></textarea>
+                    <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 2" [(ngModel)]='question.choice.choiceB'></textarea>
                         </div>
                 <div class= "ui-g-12 ui-md-6 ui-lg-6">
-                        <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 3" [(ngModel)]='question.choice.choiceC' style="width: 500px;"></textarea>
+                        <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 3" [(ngModel)]='question.choice.choiceC' ></textarea>
                             </div>
                     <div class= "ui-g-12 ui-md-6 ui-lg-6">
-                            <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 4" [(ngModel)]='question.choice.choiceD' style="width: 500px;"></textarea>
+                            <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 4" [(ngModel)]='question.choice.choiceD'></textarea>
                                 </div>
                         <div class= "ui-g-12 ui-md-6 ui-lg-6">
-                                <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 5" [(ngModel)]='question.choice.choiceE'style="width: 500px;"></textarea>
+                                <textarea rows="1" cols="30" pInputTextarea placeholder="Scala 5" [(ngModel)]='question.choice.choiceE'></textarea>
                                     </div>
-        
-                            <div style="padding-top: 200px;">
-                                <div class="ui-g-12 ui-md-6 ui-lg-6">
-                                <button pButton type="button" class="ui-button-success" style="height: 40px;width: 80px;margin-left: 480px;"(click)="showConfirmadd()"><i class="pi pi-plus" style="padding-top: 8px;"  ></i>&nbsp;Add</button>
-                                </div>
-                                <div class="ui-g-12 ui-md-6 ui-lg-6" >
-                                <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;width: 80px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
-                                </div>
-                                </div>
+        <div class="ui-g-12">
+                                    <div class="ui-g-4 ui-md-1 ui-md-offset-5">
+                                            <button (click)="showConfirmadd()" pButton type="button" class="ui-button-success" style="height: 40px;"><i class="pi pi-plus" style="padding-top: 8px;" ></i>&nbsp;Add</button>
+                                            </div>
+                                            <div class="ui-g-4 ui-md-1" >
+                                            <button (click)="goToPacktDetails()" pButton type="button" class="ui-button-danger" style="height: 40px;"><i class="pi pi-times"style="padding-top: 8px;"  ></i>&nbsp;Cancel</button>
+                                            </div>
+                                        </div>
             
         </div>
         </div>
