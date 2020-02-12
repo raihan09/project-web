@@ -45,7 +45,7 @@ export class RegisterUserComponent implements OnInit {
       'emailId': new FormControl('', [Validators.required, Validators.email]),
       'birthDate': new FormControl('', [Validators.required, birthDateValidator]),
       'gender': new FormControl,
-      'phone': new FormControl,
+      'phone': new FormControl, 
       'fullname': new FormControl,
       'address' :new FormControl
     });

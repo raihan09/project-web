@@ -51,6 +51,9 @@ export class CandidatequestComponent implements OnInit {
     this.findPackbyId(this.id)
     console.log(this.qpack)
     this.user = this.sessionService.getItem("currentUser");
+    if(this.user===null){
+      this.router.navigate(['/login']);
+    }
     this.notifications = [];
     for (var i = 1; i <= 5; i++) {
       var notificationObj = new notification("Message " + i, new Date(), null)

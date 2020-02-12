@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
 
     
   }
- directLogin(){
+ directLogin(){ 
  
   if (this.userget[0].role.roleName === "admin") {
     this.userContextService.setUser(this.userget);

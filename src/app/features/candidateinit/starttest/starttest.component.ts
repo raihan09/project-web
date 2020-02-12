@@ -87,6 +87,10 @@ aplicantAnswer:ApplicantAnswer = new ApplicantAnswer(this.header,this.qpack,this
     let c = JSON.parse(b);
     console.log("Ini "+c); 
     this.user = this.sessionService.getItem("currentUser");
+console.log("userassad:"+this.user)
+    if(this.user===null){
+      this.router.navigate(['/login']);
+    }
     this.startTimer();
     console.log(this.gender)
     this.id = this.routes.snapshot.paramMap.get('id');

@@ -117,7 +117,7 @@ showConfirmUpdate() {
   onConfirmUpdate() { 
     this.messageService.clear('cu');
     const resp = this.packService.updatePackage(this.packupdate);
-    resp.subscribe((data) => { this.toastService.addSingle("tcu",'success','','Question Pack Deleted')},
+    resp.subscribe((data) => { this.toastService.addSingle("tcu",'success','','Question Pack Updated')},
     (error)=>{  this.toastService.addSingle("tu",'error','',error.error);});
   }
 reload(){

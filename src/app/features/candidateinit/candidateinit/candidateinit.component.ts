@@ -46,6 +46,9 @@ qpack:any;
 
     this.user = this.sessionService.getItem("currentUser");
     console.log("user:"+this.user[0].username)
+    if(this.user===null){
+      this.router.navigate(['/login']);
+    }
     this.notifications = [];
     for (var i = 1; i <= 5; i++) {
       var notificationObj = new notification("Message " + i, new Date(), null)
