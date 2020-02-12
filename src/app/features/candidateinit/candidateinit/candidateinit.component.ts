@@ -45,7 +45,6 @@ qpack:any;
   ngOnInit() {
 
     this.user = this.sessionService.getItem("currentUser");
-    console.log("user:"+this.user[0].username)
     if(this.user===null){
       this.router.navigate(['/login']);
     }
